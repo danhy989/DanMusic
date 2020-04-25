@@ -2,17 +2,14 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -277,105 +274,15 @@
                   </HBox>
                </children>
             </HBox>
-            <GridPane alignment="CENTER" prefHeight="180.0" prefWidth="757.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" prefWidth="287.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="625.0" minWidth="10.0" prefWidth="285.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="183.0" prefWidth="269.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <HBox alignment="CENTER" prefHeight="206.0" prefWidth="1001.0" VBox.vgrow="ALWAYS">
                <children>
-                  <StackPane prefHeight="144.0" prefWidth="194.0">
-                     <children>
-                        <ImageView fitHeight="158.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                           <image>
-                              <Image url="@../Images/unnamed.jpg" />
-                           </image>
-                        </ImageView>
-                        <VBox alignment="BOTTOM_CENTER" prefHeight="198.0" prefWidth="292.0" spacing="2.0">
-                           <children>
-                              <Label text="POMO" textFill="WHITE">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label text="The Other Day" textFill="WHITE">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <padding>
-                              <Insets bottom="15.0" />
-                           </padding>
-                        </VBox>
-                     </children>
-                  </StackPane>
-                  <StackPane layoutX="10.0" layoutY="10.0" GridPane.columnIndex="1">
-                     <children>
-                        <ImageView fitHeight="158.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                           <image>
-                              <Image url="@../Images/unnamed.jpg" />
-                           </image>
-                        </ImageView>
-                        <VBox alignment="BOTTOM_CENTER" prefHeight="171.0" prefWidth="292.0" spacing="2.0">
-                           <children>
-                              <Label text="POMO" textFill="WHITE">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label text="The Other Day" textFill="WHITE">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <padding>
-                              <Insets bottom="15.0" />
-                           </padding>
-                        </VBox>
-                     </children>
-                  </StackPane>
-                  <StackPane layoutX="296.0" layoutY="10.0" GridPane.columnIndex="2">
-                     <children>
-                        <ImageView fitHeight="158.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                           <image>
-                              <Image url="@../Images/unnamed.jpg" />
-                           </image>
-                        </ImageView>
-                        <VBox alignment="BOTTOM_CENTER" prefHeight="171.0" prefWidth="292.0" spacing="2.0">
-                           <children>
-                              <Label text="POMO" textFill="WHITE">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label text="The Other Day" textFill="WHITE">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <padding>
-                              <Insets bottom="15.0" />
-                           </padding>
-                        </VBox>
-                     </children>
-                  </StackPane>
+                  <ScrollPane fx:id="albumListScrollPane" prefHeight="210.0" prefWidth="1002.0" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
+                     <content>
+
+                     </content>
+                  </ScrollPane>
                </children>
-            </GridPane>
+            </HBox>
             <HBox VBox.vgrow="ALWAYS">
                <children>
                   <VBox prefHeight="268.0" prefWidth="244.0" spacing="5.0" HBox.hgrow="ALWAYS">
@@ -399,163 +306,14 @@
                               </HBox>
                            </children>
                         </HBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="2.0" VBox.vgrow="ALWAYS">
+                        <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <HBox prefHeight="62.0" prefWidth="525.0" style="-fx-border-width: 0 0 0.055 0; -fx-border-color: #000000;">
-                                 <children>
-                                    <VBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="52.0">
-                                       <children>
-                                          <Label text="1.">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="346.0">
-                                       <children>
-                                          <Label text="The Weekend - Real Life">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="145.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="03:30" textFill="#948383">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </HBox>
-                              <HBox layoutX="12.0" layoutY="10.0" prefHeight="62.0" prefWidth="525.0" style="-fx-border-width: 0 0 0.055 0; -fx-border-color: #000000;">
-                                 <children>
-                                    <VBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="52.0">
-                                       <children>
-                                          <Label text="2">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="346.0">
-                                       <children>
-                                          <Label text="The Weekend - Real Life">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="145.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="03:30" textFill="#948383">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </HBox>
-                              <HBox layoutX="12.0" layoutY="10.0" prefHeight="62.0" prefWidth="525.0" style="-fx-border-width: 0 0 0.055 0; -fx-border-color: #000000;">
-                                 <children>
-                                    <VBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="52.0">
-                                       <children>
-                                          <FontAwesomeIconView fill="#ff5151" glyphName="PLAY_CIRCLE_ALT" size="28" />
-                                       </children>
-                                    </VBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="346.0">
-                                       <children>
-                                          <Label text="The Weekend - Real Life" textFill="#ff5151">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="145.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="03:30" textFill="#ff5151">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </HBox>
-                              <HBox layoutX="12.0" layoutY="74.0" prefHeight="62.0" prefWidth="525.0" style="-fx-border-width: 0 0 0.055 0; -fx-border-color: #000000;">
-                                 <children>
-                                    <VBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="52.0">
-                                       <children>
-                                          <Label text="4">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="346.0">
-                                       <children>
-                                          <Label text="The Weekend - Real Life">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="145.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="03:30" textFill="#948383">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </HBox>
-                              <HBox layoutX="12.0" layoutY="202.0" prefHeight="62.0" prefWidth="525.0" style="-fx-border-width: 0 0 0.055 0; -fx-border-color: #000000;">
-                                 <children>
-                                    <VBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="52.0">
-                                       <children>
-                                          <Label text="5">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="346.0">
-                                       <children>
-                                          <Label text="The Weekend - Real Life">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="145.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="03:30" textFill="#948383">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </HBox>
+                              <ScrollPane fx:id="trackListScrollPane" hbarPolicy="NEVER">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ScrollPane>
                            </children>
-                           <padding>
-                              <Insets left="2.0" />
-                           </padding>
                         </VBox>
                      </children>
                      <padding>

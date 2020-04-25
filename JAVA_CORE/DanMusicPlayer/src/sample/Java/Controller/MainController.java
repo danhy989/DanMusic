@@ -7,10 +7,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
@@ -19,7 +25,12 @@ import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import sample.Java.DTO.Albums;
+import sample.Java.DTO.CurrentPlayList;
+import sample.Java.DTO.Track;
+import sample.Java.Service.AlbumService;
 import sample.Java.Service.MusicPlayerService;
+import sample.Java.Service.PlaylistService;
 
 
 import java.awt.event.ActionEvent;
@@ -30,9 +41,6 @@ import java.util.*;
 
 public class MainController implements Initializable {
 
-    private static final String PLAY_CIRCLE_ALT = "PLAY_CIRCLE_ALT";
-    private static final String PAUSE_CIRCLE_ALT = "PAUSE_CIRCLE_ALT";
-    private static final String VOLUME_DOWN = "VOLUME_DOWN";
     private static final String VOLUME_OFF = "VOLUME_OFF";
     private static final String VOLUME_UP = "VOLUME_UP";
     private static final Paint BUTTON_ACTIVE_COLOR = Color.RED;
@@ -40,18 +48,10 @@ public class MainController implements Initializable {
 
     private static Stage mainStage;
 
-    private static double duration = 0;
-
-    private static double currentTime = 0;
-
 
     public static void setMainStage(Stage mainStage) {
         MainController.mainStage = mainStage;
     }
-
-    private boolean atEndOfMedia = false;
-
-    private ObservableList<File> listObservableFile;
 
     @FXML
     private FontAwesomeIconView stage_close,stage_mimimum,playStopButton,repeatTrackButton,muteTrackButton;
@@ -64,34 +64,39 @@ public class MainController implements Initializable {
     @FXML
     private Label totalDurationTime,currentDurationTime;
 
-    private class CurrentPlayList{
-        private ObservableList<File> listFile;
+    @FXML
+    private ScrollPane trackListScrollPane,albumListScrollPane;
 
-        public CurrentPlayList(ObservableList<File> listFile){
-            this.listFile = listFile;
-        }
+
+    private void playListTrack() throws Exception {
+        File file1 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/1.2-Ex 1.mp3");
+        File file2 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/people.mp3");
+        File file3 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/The Heart Wants What It Wants - Selena G.mp3");
+
+        ObservableList<File> listFile = FXCollections.observableArrayList(file1,file2,file3);
+        CurrentPlayList currentPlayList = new CurrentPlayList(listFile);
+
+        MusicPlayerService.getInstance().startPlaylist(currentPlayList);
     }
 
     String pathMusic = ("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/1.2-Ex 1.mp3");
 
     public void playAction(MouseEvent mouseEvent) {
         try{
+            playListTrack();
             if(MusicPlayerService.getInstance().getIsMediaPlaying() == null
                     || MusicPlayerService.getInstance().getIsMediaPlaying().equals(MediaPlayer.Status.HALTED)
                     || MusicPlayerService.getInstance().getIsMediaPlaying().equals(MediaPlayer.Status.UNKNOWN)){
                 System.out.println("start");
-                MusicPlayerService.getInstance().playMusic(new File(pathMusic),Optional.of(new Pair<>(playStopButton,PLAY_CIRCLE_ALT)));
-                playStopButton.setGlyphName(PAUSE_CIRCLE_ALT);
+                MusicPlayerService.getInstance().playMusic(new File(pathMusic));
             }else
             if(MusicPlayerService.getInstance().getIsMediaPlaying().equals(MediaPlayer.Status.PLAYING)) {
                 System.out.println("pause");
                 MusicPlayerService.getInstance().pauseMusic();
-                playStopButton.setGlyphName(PLAY_CIRCLE_ALT);
             }else
             if(MusicPlayerService.getInstance().getIsMediaPlaying().equals(MediaPlayer.Status.PAUSED)){
                 System.out.println("resume");
                 MusicPlayerService.getInstance().playMusic();
-                playStopButton.setGlyphName(PAUSE_CIRCLE_ALT);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -102,7 +107,6 @@ public class MainController implements Initializable {
     public void nextTrackAction(MouseEvent mouseEvent){
         try{
             MusicPlayerService.getInstance().resetTrack();
-            playStopButton.setGlyphName(PAUSE_CIRCLE_ALT);
         }catch (Exception e){
             e.printStackTrace();
             System.out.printf("Error: %s\n",e.getMessage());
@@ -112,7 +116,6 @@ public class MainController implements Initializable {
     public void previousTrackAction(MouseEvent mouseEvent){
         try{
             MusicPlayerService.getInstance().resetTrack();
-            playStopButton.setGlyphName(PAUSE_CIRCLE_ALT);
         }catch (Exception e){
             e.printStackTrace();
             System.out.printf("Error: %s\n",e.getMessage());
@@ -173,30 +176,58 @@ public class MainController implements Initializable {
 
 
 
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         /*
         Setup music player's items
          */
-        MusicPlayerService.setInstance(totalDurationTime,currentDurationTime,progressBar
+        MusicPlayerService.setInstance(playStopButton,repeatTrackButton,muteTrackButton
+                ,totalDurationTime,currentDurationTime,progressBar
                 ,progressBarVolume,slider,sliderVolume);
 
+        PlaylistService.setInstance(trackListScrollPane);
+
+        AlbumService.setInstance(albumListScrollPane);
+
+        /*
+        test
+         */
+        /*
+        Set list track!
+         */
+        Albums album1,album2,album3;
 
         File file1 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/1.2-Ex 1.mp3");
         File file2 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/people.mp3");
         File file3 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/The Heart Wants What It Wants - Selena G.mp3");
-        listObservableFile = FXCollections.observableArrayList(file1,file2,file3);
-        HashMap<File,Integer> mapFile = new HashMap<>();
-        int index = 0;
-        for(File f:listObservableFile){
-            mapFile.put(f,index++);
-        }
 
-        MusicPlayerService.getInstance().setMapFile(mapFile);
-        MusicPlayerService.getInstance().setListObservableFile(listObservableFile);
+        Track track1 = new Track("Track 1","03:33",file1);
+        Track track2 = new Track("Track 2","02:35",file2);
+        Track track3 = new Track("Track 3","04:22",file3);
+        Track track4 = new Track("Track 2","02:35",file2);
+        Track track5 = new Track("Track 3","04:22",file3);
+        Track track6 = new Track("Track 2","02:35",file2);
+        Track track7 = new Track("Track 3","04:22",file3);
+        Track track8 = new Track("Track 2","02:35",file2);
+        Track track9 = new Track("Track 3","04:22",file3);
 
+        List<Track> tracks = new ArrayList<>(Arrays.asList(track1, track2, track3,track4,track5,track6,track7,track8,track9));
 
+        List<Track> tracks2 = new ArrayList<>(Arrays.asList(track1, track4, track3));
 
+        List<Track> tracks3 = new ArrayList<>(Arrays.asList(track1, track4));
+
+         album1 = new Albums("Album A","SonTungMTP","2020-09-12","sample/Resources/Images/unnamed.jpg",tracks);
+         album2 = new Albums("Album B","Justin","2020-03-14","sample/Resources/Images/unnamed.jpg",tracks2);
+         album3 = new Albums("Album C","Amira","2020-01-14","sample/Resources/Images/unnamed.jpg",tracks3);
+
+         List<Albums> albums = new ArrayList<>(Arrays.asList(album1,album2,album3));
+
+        AlbumService.getInstance().setContentAlbums(albums);
+        PlaylistService.getInstance().setContentPlaylist(album1);
     }
 
 

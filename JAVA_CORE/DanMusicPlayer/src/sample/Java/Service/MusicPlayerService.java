@@ -7,6 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -18,6 +19,7 @@ import javafx.scene.media.Track;
 import javafx.util.Duration;
 import javafx.util.Pair;
 import sample.Java.Controller.MainController;
+import sample.Java.DTO.CurrentPlayList;
 
 import java.io.File;
 import java.net.URI;
@@ -31,9 +33,13 @@ public class MusicPlayerService  {
     private static double MIN_CHANGE = 0.5 ;
     private static Duration statusDuration = Duration.UNKNOWN;
 
+    private static final String PLAY_CIRCLE_ALT = "PLAY_CIRCLE_ALT";
+    private static final String PAUSE_CIRCLE_ALT = "PAUSE_CIRCLE_ALT";
+
     Slider slider,sliderVolume;
     ProgressBar progressBar, progressBarVolume;
     Label totalDurationTime,currentDurationTime;
+    FontAwesomeIconView playStopButton,repeatTrackButton,muteTrackButton;
 
     private ObservableList<File> listObservableFile;
     HashMap<File, Integer > mapFile;
@@ -44,9 +50,14 @@ public class MusicPlayerService  {
     public static MusicPlayerService getInstance(){
         return instance;
     }
-    public static void setInstance(Label totalDurationTime,Label currentDurationTime,
-                                                 ProgressBar progressBar,ProgressBar progressBarVolume,
+    public static void setInstance(FontAwesomeIconView playStopButton,FontAwesomeIconView repeatTrackButton
+            ,FontAwesomeIconView muteTrackButton,
+                                   Label totalDurationTime,Label currentDurationTime,
+                                   ProgressBar progressBar,ProgressBar progressBarVolume,
                                                  Slider slider,Slider sliderVolume){
+        instance.playStopButton=playStopButton;
+        instance.repeatTrackButton = repeatTrackButton;
+        instance.muteTrackButton = muteTrackButton;
         instance.totalDurationTime = totalDurationTime;
         instance.currentDurationTime = currentDurationTime;
         instance.progressBar = progressBar;
@@ -55,10 +66,7 @@ public class MusicPlayerService  {
         instance.sliderVolume = sliderVolume;
     }
 
-    public void playMusic(File f, Optional<Pair<FontAwesomeIconView, String>> button) throws Exception {
-//            String replace = path.replace("\\", "/");
-//            String thePath = replace.replaceAll(" ","%20");
-//            String thePath2 = ("file:///"+thePath);
+    public void playMusic(File f) throws Exception {
         if(mediaPlayer != null){
             mediaPlayer.stop();
         }
@@ -66,33 +74,34 @@ public class MusicPlayerService  {
             Media media = new Media(URI);
             try
             {
+                playStopButton.setGlyphName(PAUSE_CIRCLE_ALT);
                 mediaPlayer = new MediaPlayer(media);
-
                 mediaPlayer.setOnEndOfMedia(new Runnable() {
                     @Override
                     public void run() {
-                        if(continuePlaying){
+                        if(mapFile!=null && mapFile.size()>1){
                             int index = mapFile.get(f);
                             int indexNextTrack = index+1;
                             if(indexNextTrack < listObservableFile.size()){
                                 try {
-                                    playMusic(listObservableFile.get(indexNextTrack),button);
+                                    playMusic(listObservableFile.get(indexNextTrack));
                                     currentIndex = indexNextTrack;
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }else{
-                                try {
-                                    if(statusDuration.equals(Duration.ZERO)){
-                                        mediaPlayer.seek(Duration.ZERO);
-                                        return;
-                                    }
-                                    mediaPlayer.dispose();
-                                    button.ifPresent(ab->ab.getKey().setGlyphName(button.get().getValue()));
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
                                 currentIndex =0;
+                            }
+                        }else{
+                            try {
+                                if(statusDuration.equals(Duration.ZERO)){
+                                    mediaPlayer.seek(Duration.ZERO);
+                                    return;
+                                }
+                                mediaPlayer.dispose();
+                                playStopButton.setGlyphName(PLAY_CIRCLE_ALT);
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
                         }
                     }
@@ -261,6 +270,7 @@ public class MusicPlayerService  {
         if(mediaPlayer!=null && !this.getIsMediaPlaying().equals(MediaPlayer.Status.UNKNOWN)){
             mediaPlayer.seek(Duration.millis(0));
             mediaPlayer.play();
+            playStopButton.setGlyphName(PAUSE_CIRCLE_ALT);
         }
     }
 
@@ -279,5 +289,16 @@ public class MusicPlayerService  {
 
     public void setListObservableFile(ObservableList<File> listObservableFile) {
         this.listObservableFile = listObservableFile;
+    }
+
+    public void startPlaylist(CurrentPlayList currentPlaylist) throws Exception {
+        HashMap<File,Integer> mapFile = new HashMap<>();
+        int index = 0;
+        for(File f:currentPlaylist.getListFile()){
+            mapFile.put(f,index++);
+        }
+        setMapFile(mapFile);
+        setListObservableFile(currentPlaylist.getListFile());
+        playMusic(currentPlaylist.getListFile().get(0));
     }
 }
