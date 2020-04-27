@@ -7,9 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.HBox;
 import sample.Java.DTO.Albums;
 import sample.Java.DTO.CurrentPlayList;
+import sample.Java.DTO.Single;
 import sample.Java.DTO.Track;
 import sample.Java.Service.MusicPlayerService;
 import sample.Java.Service.PlaylistService;
@@ -17,37 +18,32 @@ import sample.Java.Service.PlaylistService;
 import java.io.File;
 import java.io.IOException;
 
-public class AlbumPane extends StackPane {
+public class SinglePane extends HBox {
     @FXML
-    private ImageView albumImageView;
+    private ImageView image;
 
     @FXML
-    private Label albumName,albumSingle;
+    private Label name;
 
-    private Albums albums;
+    @FXML
+    private Label genre;
 
-    public ImageView getAlbumImageView() {
-        return albumImageView;
+    private Single single;
+
+    public ImageView getImage() {
+        return image;
     }
 
-    public Label getAlbumName() {
-        return albumName;
+    public Label getName() {
+        return name;
     }
 
-    public Label getAlbumSingle() {
-        return albumSingle;
+    public Label getGenre() {
+        return genre;
     }
 
-    public Albums getAlbums() {
-        return albums;
-    }
-
-    public void setAlbums(Albums albums) {
-        this.albums = albums;
-    }
-
-    public AlbumPane() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Resources/Fxml/album_items.fxml"));
+    public SinglePane() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Resources/Fxml/single_items.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try{
@@ -57,14 +53,22 @@ public class AlbumPane extends StackPane {
         }
     }
 
+    public Single getSingle() {
+        return single;
+    }
+
+    public void setSingle(Single single) {
+        this.single = single;
+    }
+
     @FXML
-    private void selectAlbum(MouseEvent mouseEvent) throws Exception {
-        PlaylistService.getInstance().setContentPlaylist(this.albums);
+    private void selectPLaylistOfSingle(MouseEvent mouseEvent) throws Exception {
+        PlaylistService.getInstance().setContentPlaylist(this.getSingle().getAlbumsTrackHot());
 
         ObservableList<File> files = FXCollections.observableArrayList();
 
-        for (Track track:this.getAlbums().getTracks()
-             ) {
+        for (Track track:this.getSingle().getAlbumsTrackHot().getTracks()
+        ) {
             files.add(track.getTrackFile());
         }
 

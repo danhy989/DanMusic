@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root fx:id="panelSingle" onMouseClicked="#selectPLaylistOfSingle" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fx:id="image" fitHeight="62.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Images/sontung.png" />
+            </image>
+        </ImageView>
+        <VBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="295.0" spacing="7.0" HBox.hgrow="ALWAYS">
+            <children>
+                <Label fx:id="name" text="Sơn tùng MTP">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="genre" text="Love hiphop" textFill="#948383" />
+            </children>
+            <padding>
+                <Insets bottom="2.0" left="10.0" right="10.0" top="2.0" />
+            </padding>
+        </VBox>
+        <HBox alignment="CENTER_RIGHT" prefHeight="4.0" prefWidth="181.0" HBox.hgrow="ALWAYS">
+            <children>
+                <FontAwesomeIconView fill="#948383" glyphName="ELLIPSIS_V" size="20" />
+            </children>
+         <HBox.margin>
+            <Insets right="30.0" />
+         </HBox.margin>
+        </HBox>
+    </children>
+</fx:root>

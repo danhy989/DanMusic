@@ -25,6 +25,7 @@ import java.io.File;
 import java.net.URI;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class MusicPlayerService  {
     private static final MusicPlayerService instance = new MusicPlayerService();
@@ -45,6 +46,8 @@ public class MusicPlayerService  {
     HashMap<File, Integer > mapFile;
     boolean continuePlaying = true;
     int currentIndex= 0 ;
+
+    private static int numPlayingTrackOnList = 0;
 
     private MusicPlayerService(){ }
     public static MusicPlayerService getInstance(){
@@ -71,6 +74,8 @@ public class MusicPlayerService  {
             mediaPlayer.stop();
         }
         String URI = f.toURI().toString();
+        numPlayingTrackOnList = IntStream.range(0,listObservableFile.size())
+                .filter(value -> listObservableFile.get(value).toURI().toString().equals(URI)).findFirst().getAsInt();
             Media media = new Media(URI);
             try
             {
@@ -84,6 +89,11 @@ public class MusicPlayerService  {
                             int indexNextTrack = index+1;
                             if(indexNextTrack < listObservableFile.size()){
                                 try {
+                                    if(statusDuration.equals(Duration.ZERO)){
+                                        System.out.println(statusDuration);
+                                        mediaPlayer.seek(Duration.ZERO);
+                                        return;
+                                    }
                                     playMusic(listObservableFile.get(indexNextTrack));
                                     currentIndex = indexNextTrack;
                                 } catch (Exception e) {
@@ -93,21 +103,13 @@ public class MusicPlayerService  {
                                 currentIndex =0;
                             }
                         }else{
-                            try {
-                                if(statusDuration.equals(Duration.ZERO)){
-                                    mediaPlayer.seek(Duration.ZERO);
-                                    return;
-                                }
-                                mediaPlayer.dispose();
-                                playStopButton.setGlyphName(PLAY_CIRCLE_ALT);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+                            mediaPlayer.dispose();
+                            playStopButton.setGlyphName(PLAY_CIRCLE_ALT);
                         }
                     }
                 });
 
-                mediaPlayer.play();
+                mediaPlayer.setAutoPlay(true);
                 setupMusicPLayerBottomBar();
             }catch (Exception e)
             {
@@ -124,6 +126,7 @@ public class MusicPlayerService  {
         try
         {
             mediaPlayer.play();
+            playStopButton.setGlyphName(PAUSE_CIRCLE_ALT);
         }
         catch (Exception e)
         {
@@ -135,7 +138,10 @@ public class MusicPlayerService  {
     public void stopMusic() throws Exception {
         try
         {
-            mediaPlayer.stop();
+            if(mediaPlayer != null){
+                mediaPlayer.stop();
+                playStopButton.setGlyphName(PLAY_CIRCLE_ALT);
+            }
         }
         catch (Exception e)
         {
@@ -147,12 +153,49 @@ public class MusicPlayerService  {
     public void pauseMusic() throws Exception {
         try
         {
-            mediaPlayer.pause();
+            if(mediaPlayer != null){
+                mediaPlayer.pause();
+                playStopButton.setGlyphName(PLAY_CIRCLE_ALT);
+            }
         }
         catch (Exception e)
         {
             System.out.println( e.getMessage() );
             throw new Exception("Can't pause this track");
+        }
+    }
+
+    public void nextTrack(){
+        if(mediaPlayer != null){
+            if(listObservableFile.size()>1 && statusDuration!=Duration.ZERO){
+                try {
+                    if(numPlayingTrackOnList<listObservableFile.size()-1){
+                        stopMusic();
+                        this.playMusic(listObservableFile.get(++numPlayingTrackOnList));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else{
+                this.resetTrack();
+            }
+        }
+    }
+
+    public void previousTrack(){
+        if(mediaPlayer != null){
+            if(listObservableFile.size()>1 && statusDuration!=Duration.ZERO){
+                try {
+                    if(numPlayingTrackOnList>0){
+                        stopMusic();
+                        this.playMusic(listObservableFile.get(--numPlayingTrackOnList));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else{
+                this.resetTrack();
+            }
         }
     }
 
@@ -255,17 +298,6 @@ public class MusicPlayerService  {
         }
     }
 
-    public void test(Slider slider){
-        slider.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasChanging, Boolean isNowChanging) {
-                if (! isNowChanging) {
-                    mediaPlayer.seek(Duration.seconds(slider.getValue()));
-                }
-            }
-        });
-    }
-
     public void resetTrack(){
         if(mediaPlayer!=null && !this.getIsMediaPlaying().equals(MediaPlayer.Status.UNKNOWN)){
             mediaPlayer.seek(Duration.millis(0));
@@ -291,7 +323,7 @@ public class MusicPlayerService  {
         this.listObservableFile = listObservableFile;
     }
 
-    public void startPlaylist(CurrentPlayList currentPlaylist) throws Exception {
+    public void startPlaylist(CurrentPlayList currentPlaylist,File fileStart) throws Exception {
         HashMap<File,Integer> mapFile = new HashMap<>();
         int index = 0;
         for(File f:currentPlaylist.getListFile()){
@@ -299,6 +331,15 @@ public class MusicPlayerService  {
         }
         setMapFile(mapFile);
         setListObservableFile(currentPlaylist.getListFile());
-        playMusic(currentPlaylist.getListFile().get(0));
+
+        int posStart = 0;
+
+        if(fileStart!=null){
+            posStart  = IntStream.range(0,listObservableFile.size())
+                    .filter(value -> listObservableFile.get(value).toURI().toString().
+                            equals(fileStart.toURI().toString())).findFirst().getAsInt();
+        }
+
+        playMusic(currentPlaylist.getListFile().get(posStart));
     }
 }

@@ -28,6 +28,7 @@ public class PlaylistService {
             trackPane.getTrackName().setText(albums.getTracks().get(i).getName());
             trackPane.getTrackTotalDuration().setText(albums.getTracks().get(i).getDuration());
             trackPane.setTrack(albums.getTracks().get(i));
+            trackPane.setAlbums(albums);
             vBox.getChildren().add(trackPane);
         }
         vBox.setPadding(new Insets(0,10,0,10));

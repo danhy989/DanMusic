@@ -27,10 +27,12 @@ import javafx.util.Duration;
 import javafx.util.Pair;
 import sample.Java.DTO.Albums;
 import sample.Java.DTO.CurrentPlayList;
+import sample.Java.DTO.Single;
 import sample.Java.DTO.Track;
 import sample.Java.Service.AlbumService;
 import sample.Java.Service.MusicPlayerService;
 import sample.Java.Service.PlaylistService;
+import sample.Java.Service.SingleService;
 
 
 import java.awt.event.ActionEvent;
@@ -65,28 +67,14 @@ public class MainController implements Initializable {
     private Label totalDurationTime,currentDurationTime;
 
     @FXML
-    private ScrollPane trackListScrollPane,albumListScrollPane;
-
-
-    private void playListTrack() throws Exception {
-        File file1 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/1.2-Ex 1.mp3");
-        File file2 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/people.mp3");
-        File file3 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/The Heart Wants What It Wants - Selena G.mp3");
-
-        ObservableList<File> listFile = FXCollections.observableArrayList(file1,file2,file3);
-        CurrentPlayList currentPlayList = new CurrentPlayList(listFile);
-
-        MusicPlayerService.getInstance().startPlaylist(currentPlayList);
-    }
+    private ScrollPane trackListScrollPane,albumListScrollPane,singleScrollPane;
 
     String pathMusic = ("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/1.2-Ex 1.mp3");
 
     public void playAction(MouseEvent mouseEvent) {
         try{
-            playListTrack();
             if(MusicPlayerService.getInstance().getIsMediaPlaying() == null
-                    || MusicPlayerService.getInstance().getIsMediaPlaying().equals(MediaPlayer.Status.HALTED)
-                    || MusicPlayerService.getInstance().getIsMediaPlaying().equals(MediaPlayer.Status.UNKNOWN)){
+                    || MusicPlayerService.getInstance().getIsMediaPlaying().equals(MediaPlayer.Status.HALTED)){
                 System.out.println("start");
                 MusicPlayerService.getInstance().playMusic(new File(pathMusic));
             }else
@@ -106,7 +94,7 @@ public class MainController implements Initializable {
 
     public void nextTrackAction(MouseEvent mouseEvent){
         try{
-            MusicPlayerService.getInstance().resetTrack();
+            MusicPlayerService.getInstance().nextTrack();
         }catch (Exception e){
             e.printStackTrace();
             System.out.printf("Error: %s\n",e.getMessage());
@@ -115,7 +103,7 @@ public class MainController implements Initializable {
 
     public void previousTrackAction(MouseEvent mouseEvent){
         try{
-            MusicPlayerService.getInstance().resetTrack();
+            MusicPlayerService.getInstance().previousTrack();
         }catch (Exception e){
             e.printStackTrace();
             System.out.printf("Error: %s\n",e.getMessage());
@@ -189,8 +177,8 @@ public class MainController implements Initializable {
                 ,progressBarVolume,slider,sliderVolume);
 
         PlaylistService.setInstance(trackListScrollPane);
-
         AlbumService.setInstance(albumListScrollPane);
+        SingleService.setInstance(singleScrollPane);
 
         /*
         test
@@ -228,6 +216,16 @@ public class MainController implements Initializable {
 
         AlbumService.getInstance().setContentAlbums(albums);
         PlaylistService.getInstance().setContentPlaylist(album1);
+
+        Single single1 =
+                new Single("Son Tung","Hiphop","Ca si nguoi thai binh",
+                        "sample/Resources/Images/sontung.png",album2,null);
+
+        Single single2 = new Single("Taylor","Ballad","Ca si nguoi nuoc ngoai",
+                "sample/Resources/Images/taylor.jpg",album3,null);
+
+        SingleService.getInstance().setContentSingle(new ArrayList<>(Arrays.asList(single1,single2)));
+
     }
 
 

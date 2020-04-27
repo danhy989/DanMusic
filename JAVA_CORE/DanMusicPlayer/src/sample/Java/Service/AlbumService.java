@@ -36,7 +36,8 @@ public class AlbumService {
             albumPane.setAlbums(albums.get(i));
             hBox.getChildren().add(albumPane);
         }
-        albumListScrollPane.setPadding(new Insets(10,10,10,10));
+        albumListScrollPane.setPadding(new Insets(5,5,5,5));
+        albumListScrollPane.setFitToHeight(true);
         albumListScrollPane.setContent(hBox);
         albumListScrollPane.setPannable(true);
     }

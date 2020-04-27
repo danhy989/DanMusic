@@ -30,8 +30,17 @@ public class TrackPane extends HBox {
     @FXML
     private Label trackTotalDuration;
 
-    @FXML
     private Track track;
+
+    private Albums albums;
+
+    public Albums getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(Albums albums) {
+        this.albums = albums;
+    }
 
     public Track getTrack() {
         return track;
@@ -68,8 +77,10 @@ public class TrackPane extends HBox {
     @FXML
     private void selectTrackOnPlaylist(MouseEvent mouseEvent) throws Exception {
         ObservableList<File> files = FXCollections.observableArrayList();
-        files.add(this.track.getTrackFile());
+        albums.getTracks().forEach(t->{
+            files.add(t.getTrackFile());
+        });
         CurrentPlayList currentPlayList = new CurrentPlayList(files);
-        MusicPlayerService.getInstance().startPlaylist(currentPlayList);
+        MusicPlayerService.getInstance().startPlaylist(currentPlayList,track.getTrackFile());
     }
 }
