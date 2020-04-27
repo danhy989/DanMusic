@@ -34,6 +34,7 @@ public class SingleService {
         vBox.setPadding(new Insets(0,5,0,5));
         singleScrollPane.setContent(vBox);
         singleScrollPane.setFitToWidth(true);
+        singleScrollPane.setFitToHeight(true);
         singleScrollPane.setPannable(true);
     }
 }

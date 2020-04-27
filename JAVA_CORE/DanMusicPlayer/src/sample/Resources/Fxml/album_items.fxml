@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="panelAlbum" onMouseClicked="#selectAlbum" type="javafx.scene.layout.StackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="panelAlbum" onMouseClicked="#selectAlbum" type="javafx.scene.layout.StackPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
         <children>
             <ImageView fx:id="albumImageView" fitHeight="177.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                 <cursor>

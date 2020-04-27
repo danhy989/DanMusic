@@ -49,6 +49,10 @@ public class MusicPlayerService  {
 
     private static int numPlayingTrackOnList = 0;
 
+    public static int getNumPlayingTrackOnList() {
+        return numPlayingTrackOnList;
+    }
+
     private MusicPlayerService(){ }
     public static MusicPlayerService getInstance(){
         return instance;
@@ -69,13 +73,24 @@ public class MusicPlayerService  {
         instance.sliderVolume = sliderVolume;
     }
 
+    public boolean isPlayingTrack(File f){
+        int temp = IntStream.range(0,listObservableFile.size())
+                .filter(value -> listObservableFile.get(value).toURI().toString().equals(f.toURI().toString())).findFirst().getAsInt();
+        if(numPlayingTrackOnList == temp){
+            return true;
+        }
+        return false;
+    }
+
     public void playMusic(File f) throws Exception {
         if(mediaPlayer != null){
             mediaPlayer.stop();
         }
         String URI = f.toURI().toString();
-        numPlayingTrackOnList = IntStream.range(0,listObservableFile.size())
-                .filter(value -> listObservableFile.get(value).toURI().toString().equals(URI)).findFirst().getAsInt();
+        if(null!=listObservableFile && listObservableFile.size()>1){
+            numPlayingTrackOnList = IntStream.range(0,listObservableFile.size())
+                    .filter(value -> listObservableFile.get(value).toURI().toString().equals(URI)).findFirst().getAsInt();
+        }
             Media media = new Media(URI);
             try
             {
@@ -329,6 +344,9 @@ public class MusicPlayerService  {
         for(File f:currentPlaylist.getListFile()){
             mapFile.put(f,index++);
         }
+        if(mapFile.size()!=currentPlaylist.getListFile().size()){
+            throw new Exception("File nhac bi trung");
+        }
         setMapFile(mapFile);
         setListObservableFile(currentPlaylist.getListFile());
 
@@ -339,7 +357,6 @@ public class MusicPlayerService  {
                     .filter(value -> listObservableFile.get(value).toURI().toString().
                             equals(fileStart.toURI().toString())).findFirst().getAsInt();
         }
-
         playMusic(currentPlaylist.getListFile().get(posStart));
     }
 }

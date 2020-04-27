@@ -1,6 +1,7 @@
 package sample.Java.Service;
 
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import sample.Java.Controller.TrackPane;
@@ -18,6 +19,10 @@ public class PlaylistService {
     }
 
     ScrollPane trackListScrollPane;
+
+    public ScrollPane getTrackListScrollPane() {
+        return trackListScrollPane;
+    }
 
     public void setContentPlaylist(Albums albums){
         trackListScrollPane.setContent(null);

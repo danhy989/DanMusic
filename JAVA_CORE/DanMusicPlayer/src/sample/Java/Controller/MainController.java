@@ -25,6 +25,11 @@ import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import javazoom.jl.decoder.JavaLayerException;
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.tag.TagException;
 import sample.Java.DTO.Albums;
 import sample.Java.DTO.CurrentPlayList;
 import sample.Java.DTO.Single;
@@ -33,10 +38,16 @@ import sample.Java.Service.AlbumService;
 import sample.Java.Service.MusicPlayerService;
 import sample.Java.Service.PlaylistService;
 import sample.Java.Service.SingleService;
+import sample.Java.Util.Mp3Utils;
+import sample.Java.Util.TimeUtils;
 
 
+import javax.sound.sampled.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.*;
@@ -162,11 +173,6 @@ public class MainController implements Initializable {
         }
     }
 
-
-
-
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         /*
@@ -192,21 +198,22 @@ public class MainController implements Initializable {
         File file2 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/people.mp3");
         File file3 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/The Heart Wants What It Wants - Selena G.mp3");
 
-        Track track1 = new Track("Track 1","03:33",file1);
-        Track track2 = new Track("Track 2","02:35",file2);
-        Track track3 = new Track("Track 3","04:22",file3);
-        Track track4 = new Track("Track 2","02:35",file2);
-        Track track5 = new Track("Track 3","04:22",file3);
-        Track track6 = new Track("Track 2","02:35",file2);
-        Track track7 = new Track("Track 3","04:22",file3);
-        Track track8 = new Track("Track 2","02:35",file2);
-        Track track9 = new Track("Track 3","04:22",file3);
 
-        List<Track> tracks = new ArrayList<>(Arrays.asList(track1, track2, track3,track4,track5,track6,track7,track8,track9));
+        Track track1 = new Track("Track A", TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file1)),file1);
+        Track track2 = new Track("Track B",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file2)),file2);
+        Track track3 = new Track("Track C",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file3)),file3);
+        Track track4 = new Track("Track D",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file2)),file2);
+        Track track5 = new Track("Track E",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file3)),file3);
+        Track track6 = new Track("Track 1",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file2)),file2);
+        Track track7 = new Track("Track 2",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file3)),file3);
+        Track track8 = new Track("Track 3",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file2)),file2);
+        Track track9 = new Track("Track 4",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file3)),file3);
 
-        List<Track> tracks2 = new ArrayList<>(Arrays.asList(track1, track4, track3));
+        List<Track> tracks = new ArrayList<>(Arrays.asList(track1, track2, track3));
 
-        List<Track> tracks3 = new ArrayList<>(Arrays.asList(track1, track4));
+        List<Track> tracks2 = new ArrayList<>(Arrays.asList(track5, track6));
+
+        List<Track> tracks3 = new ArrayList<>(Arrays.asList(track8, track9));
 
          album1 = new Albums("Album A","SonTungMTP","2020-09-12","sample/Resources/Images/unnamed.jpg",tracks);
          album2 = new Albums("Album B","Justin","2020-03-14","sample/Resources/Images/unnamed.jpg",tracks2);
@@ -224,7 +231,10 @@ public class MainController implements Initializable {
         Single single2 = new Single("Taylor","Ballad","Ca si nguoi nuoc ngoai",
                 "sample/Resources/Images/taylor.jpg",album3,null);
 
-        SingleService.getInstance().setContentSingle(new ArrayList<>(Arrays.asList(single1,single2)));
+        Single single3 = new Single("Taylor","Ballad","Ca si nguoi nuoc ngoai",
+                "sample/Resources/Images/taylor.jpg",album2,null);
+
+        SingleService.getInstance().setContentSingle(new ArrayList<>(Arrays.asList(single1,single2,single3)));
 
     }
 
