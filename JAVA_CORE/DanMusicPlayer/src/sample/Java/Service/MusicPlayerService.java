@@ -3,27 +3,22 @@ package sample.Java.Service;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
-import javafx.scene.media.AudioClip;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.Track;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import javafx.util.Pair;
-import sample.Java.Controller.MainController;
+import sample.Java.Controller.TrackPane;
 import sample.Java.DTO.CurrentPlayList;
+import sample.Java.DTO.MusicplayerTracksInfo;
 
 import java.io.File;
-import java.net.URI;
-import java.net.URL;
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -33,35 +28,32 @@ public class MusicPlayerService  {
     private static final int VOLUME_SLIDER_BAR_MAX_WIDTH = 100;
     private static double MIN_CHANGE = 0.5 ;
     private static Duration statusDuration = Duration.UNKNOWN;
+    private static int numPlayingTrackOnList = 0;
 
     private static final String PLAY_CIRCLE_ALT = "PLAY_CIRCLE_ALT";
     private static final String PAUSE_CIRCLE_ALT = "PAUSE_CIRCLE_ALT";
 
     Slider slider,sliderVolume;
     ProgressBar progressBar, progressBarVolume;
-    Label totalDurationTime,currentDurationTime;
+    Label totalDurationTime,currentDurationTime,nameTrackPlaying,singleTrackPlaying;
     FontAwesomeIconView playStopButton,repeatTrackButton,muteTrackButton;
+    ImageView imageTrackPLaying;
 
     private ObservableList<File> listObservableFile;
+    private MusicplayerTracksInfo musicplayerTracksInfo;
     HashMap<File, Integer > mapFile;
-    boolean continuePlaying = true;
     int currentIndex= 0 ;
-
-    private static int numPlayingTrackOnList = 0;
-
-    public static int getNumPlayingTrackOnList() {
-        return numPlayingTrackOnList;
-    }
 
     private MusicPlayerService(){ }
     public static MusicPlayerService getInstance(){
         return instance;
     }
-    public static void setInstance(FontAwesomeIconView playStopButton,FontAwesomeIconView repeatTrackButton
-            ,FontAwesomeIconView muteTrackButton,
-                                   Label totalDurationTime,Label currentDurationTime,
-                                   ProgressBar progressBar,ProgressBar progressBarVolume,
-                                                 Slider slider,Slider sliderVolume){
+    public static void setInstance(FontAwesomeIconView playStopButton, FontAwesomeIconView repeatTrackButton
+            , FontAwesomeIconView muteTrackButton,
+                                   Label totalDurationTime, Label currentDurationTime,
+                                   ProgressBar progressBar, ProgressBar progressBarVolume,
+                                   Slider slider, Slider sliderVolume, ImageView imageTrackPLaying,
+                                   Label nameTrackPlaying, Label singleTrackPlaying){
         instance.playStopButton=playStopButton;
         instance.repeatTrackButton = repeatTrackButton;
         instance.muteTrackButton = muteTrackButton;
@@ -71,21 +63,18 @@ public class MusicPlayerService  {
         instance.progressBarVolume = progressBarVolume;
         instance.slider = slider;
         instance.sliderVolume = sliderVolume;
-    }
-
-    public boolean isPlayingTrack(File f){
-        int temp = IntStream.range(0,listObservableFile.size())
-                .filter(value -> listObservableFile.get(value).toURI().toString().equals(f.toURI().toString())).findFirst().getAsInt();
-        if(numPlayingTrackOnList == temp){
-            return true;
-        }
-        return false;
+        instance.imageTrackPLaying = imageTrackPLaying;
+        instance.nameTrackPlaying=nameTrackPlaying;
+        instance.singleTrackPlaying=singleTrackPlaying;
     }
 
     public void playMusic(File f) throws Exception {
         if(mediaPlayer != null){
             mediaPlayer.stop();
         }
+
+        chooseColorTrackPane();
+
         String URI = f.toURI().toString();
         if(null!=listObservableFile && listObservableFile.size()>1){
             numPlayingTrackOnList = IntStream.range(0,listObservableFile.size())
@@ -134,6 +123,22 @@ public class MusicPlayerService  {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+        }
+    }
+
+    private void chooseColorTrackPane() {
+        VBox vboxPlaylist = (VBox) PlaylistService.getInstance().getTrackListScrollPane().getContent();
+        for(int i=0;i<listObservableFile.size();i++){
+            TrackPane trackPane = (TrackPane) vboxPlaylist.getChildren().get(i);
+            if(listObservableFile.get(numPlayingTrackOnList).getAbsolutePath().equals(listObservableFile.get(i).getAbsolutePath())){
+                trackPane.getTrackNumOrder().setTextFill(Color.RED);
+                trackPane.getTrackTotalDuration().setTextFill(Color.RED);
+                trackPane.getTrackName().setTextFill(Color.RED);
+            }else{
+                trackPane.getTrackNumOrder().setTextFill(Color.BLACK);
+                trackPane.getTrackTotalDuration().setTextFill(Color.BLACK);
+                trackPane.getTrackName().setTextFill(Color.BLACK);
+            }
         }
     }
 
@@ -308,7 +313,13 @@ public class MusicPlayerService  {
 
                 mediaPlayer.volumeProperty().bind(sliderVolume.valueProperty().divide(progressBarVolume.getMaxWidth()));
 
-                //end
+                //Track playing info
+                imageTrackPLaying.imageProperty().bind(musicplayerTracksInfo.getImageTracksObservableList().get(numPlayingTrackOnList));
+               nameTrackPlaying.textProperty().bind(musicplayerTracksInfo.getNameTracksObservableList().get(numPlayingTrackOnList));
+                singleTrackPlaying.textProperty().bind(musicplayerTracksInfo.getSingleTracksObservableList().get(numPlayingTrackOnList));
+
+
+
             });
         }
     }
@@ -341,14 +352,16 @@ public class MusicPlayerService  {
     public void startPlaylist(CurrentPlayList currentPlaylist,File fileStart) throws Exception {
         HashMap<File,Integer> mapFile = new HashMap<>();
         int index = 0;
-        for(File f:currentPlaylist.getListFile()){
+        musicplayerTracksInfo = (MusicplayerTracksInfo) currentPlaylist.getCurrentPlaylist().get("musicplayerTracksInfo");
+        ObservableList<File> listfiles = (ObservableList<File>)currentPlaylist.getCurrentPlaylist().get("listFiles");
+        for(File f:listfiles){
             mapFile.put(f,index++);
         }
-        if(mapFile.size()!=currentPlaylist.getListFile().size()){
+        if(mapFile.size()!=listfiles.size()){
             throw new Exception("File nhac bi trung");
         }
         setMapFile(mapFile);
-        setListObservableFile(currentPlaylist.getListFile());
+        setListObservableFile(listfiles);
 
         int posStart = 0;
 
@@ -357,6 +370,6 @@ public class MusicPlayerService  {
                     .filter(value -> listObservableFile.get(value).toURI().toString().
                             equals(fileStart.toURI().toString())).findFirst().getAsInt();
         }
-        playMusic(currentPlaylist.getListFile().get(posStart));
+        playMusic(listfiles.get(posStart));
     }
 }

@@ -12,6 +12,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sample.Java.Controller.MainController;
+import sample.Java.Controller.SceneMusicPlayingController;
 
 import java.io.File;
 import java.net.URI;
@@ -25,7 +26,6 @@ public class Main extends Application  {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Resources/Fxml/Main.fxml"));
-
         MainController.setMainStage(primaryStage);
 
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -45,6 +45,7 @@ public class Main extends Application  {
         });
         root.getStylesheets().add(getClass().getResource("Resources/Css/colors.css").toExternalForm());
         root.getStylesheets().add(getClass().getResource("Resources/Css/sliderbar.css").toExternalForm());
+        root.getStylesheets().add(getClass().getResource("Resources/Css/hover.css").toExternalForm());
         primaryStage.setTitle("DanMusic Player");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);

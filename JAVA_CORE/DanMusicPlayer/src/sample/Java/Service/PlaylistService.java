@@ -1,11 +1,13 @@
 package sample.Java.Service;
 
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import sample.Java.Controller.TrackPane;
-import sample.Java.DTO.Albums;
+import sample.Java.DTO.Album;
+
+import java.io.File;
 
 public class PlaylistService {
     private static final PlaylistService instance = new PlaylistService();
@@ -24,20 +26,25 @@ public class PlaylistService {
         return trackListScrollPane;
     }
 
-    public void setContentPlaylist(Albums albums){
-        trackListScrollPane.setContent(null);
-        VBox vBox = new VBox();
-        for(int i=0;i<albums.getTracks().size();i++){
-            TrackPane trackPane = new TrackPane();
-            trackPane.getTrackNumOrder().setText(String.valueOf(i+1));
-            trackPane.getTrackName().setText(albums.getTracks().get(i).getName());
-            trackPane.getTrackTotalDuration().setText(albums.getTracks().get(i).getDuration());
-            trackPane.setTrack(albums.getTracks().get(i));
-            trackPane.setAlbums(albums);
-            vBox.getChildren().add(trackPane);
+    public void setContentPlaylist(Album album){
+        if(album != null){
+            trackListScrollPane.setContent(null);
+            VBox vBox = new VBox();
+            for(int i = 0; i< album.getTracks().size(); i++){
+                TrackPane trackPane = new TrackPane();
+                trackPane.getTrackNumOrder().setText(String.valueOf(i+1));
+                File fileImage = new File(album.getTracks().get(i).getImageTrack());
+                trackPane.getImageView().setImage(new Image(fileImage.toURI().toString()));
+                trackPane.getTrackName().setText(album.getTracks().get(i).getName());
+                trackPane.getTrackTotalDuration().setText(album.getTracks().get(i).getDuration());
+                trackPane.setTrack(album.getTracks().get(i));
+                trackPane.setAlbum(album);
+                vBox.getChildren().add(trackPane);
+            }
+            vBox.setPadding(new Insets(0,10,0,10));
+            trackListScrollPane.setContent(vBox);
+            trackListScrollPane.setPannable(true);
         }
-        vBox.setPadding(new Insets(0,10,0,10));
-        trackListScrollPane.setContent(vBox);
-        trackListScrollPane.setPannable(true);
+
     }
 }

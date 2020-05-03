@@ -7,14 +7,34 @@ public class Track {
     private String duration;
     private File trackFile;
     private boolean isPlaying = false;
+    private String imageTrack = "";
+    private String single;
 
-    public Track(String name, String duration, File trackFile) {
+    public Track(String name, String duration, File trackFile, String imageTrack, String single) {
         this.name = name;
         this.duration = duration;
         this.trackFile = trackFile;
+        this.imageTrack = imageTrack;
+        this.single = single;
     }
 
     public Track() {
+    }
+
+    public String getSingle() {
+        return single;
+    }
+
+    public void setSingle(String single) {
+        this.single = single;
+    }
+
+    public String getImageTrack() {
+        return imageTrack;
+    }
+
+    public void setImageTrack(String imageTrack) {
+        this.imageTrack = imageTrack;
     }
 
     public File getTrackFile() {

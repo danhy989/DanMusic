@@ -1,6 +1,5 @@
 package sample.Java.DTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Single {
@@ -8,27 +7,27 @@ public class Single {
     private String genre;
     private String info;
     private String pathImage;
-    private Albums albumsTrackHot;
-    private List<Albums> albums;
+    private Album albumTrackHot;
+    private List<Album> albums;
 
-    public Single(String name, String genre, String info, String pathImage, Albums albumsTrackHot, List<Albums> albums) {
+    public Single(String name, String genre, String info, String pathImage, Album albumTrackHot, List<Album> albums) {
         this.name = name;
         this.genre = genre;
         this.info = info;
         this.pathImage = pathImage;
-        this.albumsTrackHot = albumsTrackHot;
+        this.albumTrackHot = albumTrackHot;
         this.albums = albums;
     }
 
     public Single() {
     }
 
-    public Albums getAlbumsTrackHot() {
-        return albumsTrackHot;
+    public Album getAlbumTrackHot() {
+        return albumTrackHot;
     }
 
-    public void setAlbumsTrackHot(Albums albumsTrackHot) {
-        this.albumsTrackHot = albumsTrackHot;
+    public void setAlbumTrackHot(Album albumTrackHot) {
+        this.albumTrackHot = albumTrackHot;
     }
 
     public String getName() {
@@ -63,11 +62,11 @@ public class Single {
         this.pathImage = pathImage;
     }
 
-    public List<Albums> getAlbums() {
+    public List<Album> getAlbums() {
         return albums;
     }
 
-    public void setAlbums(List<Albums> albums) {
+    public void setAlbums(List<Album> albums) {
         this.albums = albums;
     }
 

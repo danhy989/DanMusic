@@ -4,9 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,26 +12,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="782.0" prefWidth="1233.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Java.Controller.MainController">
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="782.0" prefWidth="1233.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Java.Controller.MainController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="11.0" prefWidth="1089.0" spacing="22.0" style="-fx-background-color: #0F1626;">
          <children>
-            <ImageView fitHeight="52.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
-               <image>
-                  <Image url="@../Images/unnamed.jpg" />
-               </image>
+            <ImageView fx:id="imageTrackPlaying" fitHeight="52.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </ImageView>
             <VBox alignment="CENTER" prefHeight="52.0" prefWidth="127.0" HBox.hgrow="NEVER">
                <children>
-                  <Label text="POMO" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="nameTrackPlaying" text="POMO" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label text="The Other Day" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="singleTrackPlaying" text="The Other Day" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -47,7 +42,7 @@
                </children>
             </VBox>
             <FontAwesomeIconView fx:id="nextTrackbutton" fill="WHITE" glyphName="FORWARD" layoutX="323.0" layoutY="53.0" onMouseClicked="#nextTrackAction" size="14" HBox.hgrow="NEVER" />
-            <FontAwesomeIconView fill="WHITE" glyphName="ALIGN_JUSTIFY" layoutX="317.0" layoutY="53.0" size="14" HBox.hgrow="NEVER" />
+            <FontAwesomeIconView fill="WHITE" glyphName="ALIGN_JUSTIFY" layoutX="317.0" layoutY="53.0" onMouseClicked="#musicPlayingShowButton" size="14" HBox.hgrow="NEVER" />
             <Label fx:id="currentDurationTime" text="0:00" textFill="WHITE" HBox.hgrow="NEVER" />
             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="415.0" HBox.hgrow="NEVER">
                <children>
@@ -88,6 +83,21 @@
                   <FontAwesomeIconView fx:id="resumeMusicTest" glyphName="CIRCLE" onMouseClicked="#playAction" size="14" styleClass="fill-green" />
                </children>
             </HBox>
+            <VBox layoutX="20.0" layoutY="39.0" onMouseClicked="#homeAction" spacing="2.0">
+               <children>
+                  <Label fx:id="homeButton" text="Home" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="15.0" top="7.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </VBox>
             <VBox prefHeight="210.0" prefWidth="163.0" spacing="2.0">
                <children>
                   <Label text="LIBRARY" textFill="WHITE">
@@ -98,11 +108,11 @@
                         <Insets bottom="7.0" left="15.0" top="7.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="159.0" spacing="10.0">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#libraryShowPlaylistAction" prefHeight="57.0" prefWidth="159.0" spacing="10.0">
                      <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="LIST_UL">
+                        <FontAwesomeIconView fill="WHITE" glyphName="HEART">
                         </FontAwesomeIconView>
-                        <Label text="Playlists" textFill="WHITE">
+                        <Label fx:id="libMadeForYouButton" text="Made For You" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -112,11 +122,11 @@
                         <Insets left="50.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="48.0" prefHeight="57.0" prefWidth="159.0" spacing="10.0">
+                  <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="48.0" onMouseClicked="#libraryShowArtistsAction" prefHeight="57.0" prefWidth="159.0" spacing="10.0">
                      <children>
                         <FontAwesomeIconView fill="WHITE" glyphName="USER">
                            </FontAwesomeIconView>
-                        <Label text="Artists" textFill="WHITE">
+                        <Label fx:id="libArtistsButton" text="Artists" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -126,92 +136,6 @@
                         <Insets left="50.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="107.0" prefHeight="57.0" prefWidth="159.0" spacing="10.0">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="LIST_ALT">
-                           </FontAwesomeIconView>
-                        <Label text="Albums" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="50.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="154.0" prefHeight="57.0" prefWidth="159.0" spacing="10.0">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="MUSIC">
-                           </FontAwesomeIconView>
-                        <Label text="Songs" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="50.0" />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
-            </VBox>
-            <VBox layoutX="20.0" layoutY="39.0" prefHeight="210.0" prefWidth="163.0" spacing="2.0">
-               <children>
-                  <Label text="DISCOVER" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="15.0" top="7.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="159.0" spacing="10.0">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="WINDOW_RESTORE">
-                           </FontAwesomeIconView>
-                        <Label text="Store" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="50.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="48.0" prefHeight="57.0" prefWidth="159.0" spacing="10.0">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="RSS">
-                           </FontAwesomeIconView>
-                        <Label text="Radio" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="50.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="107.0" prefHeight="57.0" prefWidth="159.0" spacing="10.0">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="HEART">
-                           </FontAwesomeIconView>
-                        <Label text="For you" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="50.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="12.0" layoutY="154.0" prefHeight="57.0" prefWidth="159.0" spacing="10.0" />
                </children>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -229,124 +153,6 @@
       </VBox>
    </left>
    <center>
-      <VBox spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
-               <children>
-                  <VBox prefHeight="100.0" prefWidth="472.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <Label text="Artists" textFill="#c6290e">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Most Popular">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </VBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="474.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <FontAwesomeIconView glyphName="HEART_ALT" size="14">
 
-                        </FontAwesomeIconView>
-                        <Label text="My Music" textFill="#948383">
-
-                        </Label>
-                        <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/avatar.png" />
-                           </image>
-                        </ImageView>
-                        <FontAwesomeIconView glyphName="ANGLE_DOWN" size="14">
-                           
-                        </FontAwesomeIconView>
-                     </children>
-                     <padding>
-                        <Insets bottom="5.0" right="20.0" top="5.0" />
-                     </padding>
-                  </HBox>
-               </children>
-            </HBox>
-            <HBox prefHeight="0.0" prefWidth="1001.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <ScrollPane fx:id="albumListScrollPane" prefHeight="0.0" prefWidth="1001.0" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
-                     <content>
-
-                     </content>
-                  </ScrollPane>
-               </children>
-            </HBox>
-            <HBox VBox.vgrow="ALWAYS">
-               <children>
-                  <VBox prefHeight="268.0" prefWidth="244.0" spacing="5.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <HBox prefHeight="54.0" prefWidth="527.0">
-                           <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="365.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label text="This Week: Most Trending Music">
-                                       <font>
-                                          <Font name="System Bold" size="16.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <FontAwesomeIconView glyphName="HEART_ALT" />
-                                    <FontAwesomeIconView glyphName="SHARE" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </HBox>
-                        <VBox VBox.vgrow="ALWAYS">
-                           <children>
-                              <ScrollPane fx:id="trackListScrollPane" hbarPolicy="NEVER" prefHeight="252.0" prefWidth="579.0" VBox.vgrow="ALWAYS">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </ScrollPane>
-                           </children>
-                        </VBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" right="25.0" />
-                     </padding>
-                  </VBox>
-                  <VBox prefHeight="268.0" prefWidth="0.0" spacing="5.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <VBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="396.0">
-                           <children>
-                              <Label text="Listen this weekend">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
-                           <children>
-                              <ScrollPane fx:id="singleScrollPane" hbarPolicy="NEVER" prefHeight="350.0" prefWidth="396.0" />
-                           </children>
-                        </VBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="40.0" right="10.0" top="10.0" />
-         </padding>
-      </VBox>
    </center>
 </BorderPane>

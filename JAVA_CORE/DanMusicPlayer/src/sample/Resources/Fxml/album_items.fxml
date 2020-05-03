@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="panelAlbum" onMouseClicked="#selectAlbum" type="javafx.scene.layout.StackPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<fx:root fx:id="panelAlbum" stylesheets="../Css/hover.css" styleClass="imageHover" onMouseClicked="#selectAlbum"  type="javafx.scene.layout.StackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
         <children>
-            <ImageView fx:id="albumImageView" fitHeight="177.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+            <ImageView fx:id="albumImageView" fitHeight="177.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true">
                 <cursor>
                     <Cursor fx:constant="DEFAULT" />
                 </cursor>
@@ -19,7 +19,7 @@
                     <Image url="@../Images/unnamed.jpg" />
                 </image>
             </ImageView>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="198.0" prefWidth="222.0" spacing="2.0" StackPane.alignment="CENTER">
+            <VBox alignment="BOTTOM_CENTER" fillWidth="false" StackPane.alignment="CENTER">
                 <children>
                     <Label fx:id="albumName" text="POMO" textFill="WHITE">
                         <font>
@@ -32,9 +32,9 @@
                         </font>
                     </Label>
                 </children>
-                <padding>
-                    <Insets bottom="15.0" />
-                </padding>
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
             </VBox>
         </children>
 </fx:root>

@@ -1,55 +1,34 @@
 package sample.Java.Controller;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.util.Pair;
-import javazoom.jl.decoder.JavaLayerException;
-import org.jaudiotagger.audio.exceptions.CannotReadException;
-import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
-import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
-import org.jaudiotagger.tag.TagException;
-import sample.Java.DTO.Albums;
-import sample.Java.DTO.CurrentPlayList;
+import sample.Java.Controller.Home.HomePane;
+import sample.Java.Controller.Library.ArtistPane;
+import sample.Java.Controller.Library.PlaylistPane;
+import sample.Java.DTO.Album;
 import sample.Java.DTO.Single;
-import sample.Java.DTO.Track;
 import sample.Java.Service.AlbumService;
 import sample.Java.Service.MusicPlayerService;
 import sample.Java.Service.PlaylistService;
 import sample.Java.Service.SingleService;
-import sample.Java.Util.Mp3Utils;
-import sample.Java.Util.TimeUtils;
+import sample.Java.Static.DataStaticLoader;
+import sample.Java.Util.EffectUtils;
 
 
-import javax.sound.sampled.*;
-import java.awt.event.ActionEvent;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class MainController implements Initializable {
@@ -67,7 +46,8 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private FontAwesomeIconView stage_close,stage_mimimum,playStopButton,repeatTrackButton,muteTrackButton;
+    private FontAwesomeIconView stage_close,stage_mimimum,playStopButton,repeatTrackButton,muteTrackButton,
+            previousTrackbutton,nextTrackbutton;
 
     @FXML
     private Slider slider,sliderVolume;
@@ -75,12 +55,50 @@ public class MainController implements Initializable {
     private ProgressBar progressBar,progressBarVolume;
 
     @FXML
-    private Label totalDurationTime,currentDurationTime;
+    private Label totalDurationTime,currentDurationTime,nameTrackPlaying,singleTrackPlaying,homeButton,
+            libMadeForYouButton,libArtistsButton;
 
     @FXML
-    private ScrollPane trackListScrollPane,albumListScrollPane,singleScrollPane;
+    private ImageView imageTrackPlaying;
+
+    @FXML
+    public BorderPane mainPane;
+
+
 
     String pathMusic = ("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/1.2-Ex 1.mp3");
+
+    public void homeAction(MouseEvent mouseEvent){
+        if(!mainPane.getCenter().getClass().equals(HomePane.class)){
+            HomePane homePane = new HomePane();
+            mainPane.setCenter(homePane);
+            List<Album> albumList = AlbumService.getInstance().convertFromAlbumDao(DataStaticLoader.getInstance().getAlbumEntities());
+            AlbumService.getInstance().setContentAlbums(albumList);
+            PlaylistService.getInstance().setContentPlaylist(albumList.get(0));
+
+            List<Single> singles = SingleService.getInstance().convertAlbumHotTrackFromSingleDao();
+            SingleService.getInstance().setContentSingle(singles);
+        }
+    }
+
+    public void musicPlayingShowButton(MouseEvent mouseEvent){
+        SceneMusicPlayingController musicPlayingController = new SceneMusicPlayingController();
+        mainPane.setCenter(musicPlayingController);
+    }
+
+    public void libraryShowPlaylistAction(MouseEvent mouseEvent){
+        if(!mainPane.getCenter().getClass().equals(PlaylistPane.class)) {
+            PlaylistPane playlistPane = new PlaylistPane();
+            mainPane.setCenter(playlistPane);
+        }
+    }
+
+    public void libraryShowArtistsAction(MouseEvent mouseEvent){
+        if(!mainPane.getCenter().getClass().equals(ArtistPane.class)) {
+            ArtistPane artistPane = new ArtistPane();
+            mainPane.setCenter(artistPane);
+        }
+    }
 
     public void playAction(MouseEvent mouseEvent) {
         try{
@@ -173,68 +191,40 @@ public class MainController implements Initializable {
         }
     }
 
+    private void setEffectForMainPage(){
+        EffectUtils.setCusorEffect(stage_close);
+        EffectUtils.setCusorEffect(stage_mimimum);
+        EffectUtils.setCusorEffect(playStopButton);
+        EffectUtils.setCusorEffect(repeatTrackButton);
+        EffectUtils.setCusorEffect(muteTrackButton);
+        EffectUtils.setCusorEffect(previousTrackbutton);
+        EffectUtils.setCusorEffect(nextTrackbutton);
+        EffectUtils.setCusorEffect(homeButton);
+        EffectUtils.setCusorEffect(libMadeForYouButton);
+        EffectUtils.setCusorEffect(libArtistsButton);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        HomePane homePane = new HomePane();
+        mainPane.setCenter(homePane);
+
+        this.setEffectForMainPage();
         /*
         Setup music player's items
          */
         MusicPlayerService.setInstance(playStopButton,repeatTrackButton,muteTrackButton
                 ,totalDurationTime,currentDurationTime,progressBar
-                ,progressBarVolume,slider,sliderVolume);
+                ,progressBarVolume,slider,sliderVolume,imageTrackPlaying,nameTrackPlaying,singleTrackPlaying);
 
-        PlaylistService.setInstance(trackListScrollPane);
-        AlbumService.setInstance(albumListScrollPane);
-        SingleService.setInstance(singleScrollPane);
+        DataStaticLoader.getInstance();
+        List<Album> albumList = AlbumService.getInstance().convertFromAlbumDao(DataStaticLoader.getInstance().getAlbumEntities());
+        AlbumService.getInstance().setContentAlbums(albumList);
+        PlaylistService.getInstance().setContentPlaylist(albumList.get(0));
 
-        /*
-        test
-         */
-        /*
-        Set list track!
-         */
-        Albums album1,album2,album3;
+        List<Single> singles = SingleService.getInstance().convertAlbumHotTrackFromSingleDao();
+        SingleService.getInstance().setContentSingle(singles);
 
-        File file1 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/1.2-Ex 1.mp3");
-        File file2 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/people.mp3");
-        File file3 = new File("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/The Heart Wants What It Wants - Selena G.mp3");
-
-
-        Track track1 = new Track("Track A", TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file1)),file1);
-        Track track2 = new Track("Track B",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file2)),file2);
-        Track track3 = new Track("Track C",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file3)),file3);
-        Track track4 = new Track("Track D",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file2)),file2);
-        Track track5 = new Track("Track E",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file3)),file3);
-        Track track6 = new Track("Track 1",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file2)),file2);
-        Track track7 = new Track("Track 2",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file3)),file3);
-        Track track8 = new Track("Track 3",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file2)),file2);
-        Track track9 = new Track("Track 4",TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file3)),file3);
-
-        List<Track> tracks = new ArrayList<>(Arrays.asList(track1, track2, track3));
-
-        List<Track> tracks2 = new ArrayList<>(Arrays.asList(track5, track6));
-
-        List<Track> tracks3 = new ArrayList<>(Arrays.asList(track8, track9));
-
-         album1 = new Albums("Album A","SonTungMTP","2020-09-12","sample/Resources/Images/unnamed.jpg",tracks);
-         album2 = new Albums("Album B","Justin","2020-03-14","sample/Resources/Images/unnamed.jpg",tracks2);
-         album3 = new Albums("Album C","Amira","2020-01-14","sample/Resources/Images/unnamed.jpg",tracks3);
-
-         List<Albums> albums = new ArrayList<>(Arrays.asList(album1,album2,album3));
-
-        AlbumService.getInstance().setContentAlbums(albums);
-        PlaylistService.getInstance().setContentPlaylist(album1);
-
-        Single single1 =
-                new Single("Son Tung","Hiphop","Ca si nguoi thai binh",
-                        "sample/Resources/Images/sontung.png",album2,null);
-
-        Single single2 = new Single("Taylor","Ballad","Ca si nguoi nuoc ngoai",
-                "sample/Resources/Images/taylor.jpg",album3,null);
-
-        Single single3 = new Single("Taylor","Ballad","Ca si nguoi nuoc ngoai",
-                "sample/Resources/Images/taylor.jpg",album2,null);
-
-        SingleService.getInstance().setContentSingle(new ArrayList<>(Arrays.asList(single1,single2,single3)));
 
     }
 

@@ -8,12 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import sample.Java.DTO.Albums;
 import sample.Java.DTO.CurrentPlayList;
 import sample.Java.DTO.Single;
 import sample.Java.DTO.Track;
 import sample.Java.Service.MusicPlayerService;
 import sample.Java.Service.PlaylistService;
+import sample.Java.Util.EffectUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,6 +51,7 @@ public class SinglePane extends HBox {
         }catch (IOException e){
             throw new RuntimeException(e);
         }
+        EffectUtils.setCusorEffect(this);
     }
 
     public Single getSingle() {
@@ -63,16 +64,16 @@ public class SinglePane extends HBox {
 
     @FXML
     private void selectPLaylistOfSingle(MouseEvent mouseEvent) throws Exception {
-        PlaylistService.getInstance().setContentPlaylist(this.getSingle().getAlbumsTrackHot());
+        if(this.getSingle().getAlbumTrackHot() != null){
+            PlaylistService.getInstance().setContentPlaylist(this.getSingle().getAlbumTrackHot());
+            ObservableList<File> files = FXCollections.observableArrayList();
+            for (Track track:this.getSingle().getAlbumTrackHot().getTracks()
+            ) {
+                files.add(track.getTrackFile());
+            }
 
-        ObservableList<File> files = FXCollections.observableArrayList();
-
-        for (Track track:this.getSingle().getAlbumsTrackHot().getTracks()
-        ) {
-            files.add(track.getTrackFile());
+            CurrentPlayList currentPlayList = new CurrentPlayList(files,this.getSingle().getAlbumTrackHot().getTracks());
+            MusicPlayerService.getInstance().startPlaylist(currentPlayList,null);
         }
-
-        CurrentPlayList currentPlayList = new CurrentPlayList(files);
-        MusicPlayerService.getInstance().startPlaylist(currentPlayList,null);
     }
 }
