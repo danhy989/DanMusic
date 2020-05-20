@@ -1,0 +1,82 @@
+{
+    "timestamp" : 1589371326220,
+    "context" : null,
+    "progress_ms" : 258,
+    "item" : {
+      "album" : {
+        "album_type" : "album",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/6sFIWsNpZYqfjUpaCgueju"
+          },
+          "href" : "https://api.spotify.com/v1/artists/6sFIWsNpZYqfjUpaCgueju",
+          "id" : "6sFIWsNpZYqfjUpaCgueju",
+          "name" : "Carly Rae Jepsen",
+          "type" : "artist",
+          "uri" : "spotify:artist:6sFIWsNpZYqfjUpaCgueju"
+        } ],
+        "available_markets" : [ "GB", "IE" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/1DFixLWuPkv3KT3TnV35m3"
+        },
+        "href" : "https://api.spotify.com/v1/albums/1DFixLWuPkv3KT3TnV35m3",
+        "id" : "1DFixLWuPkv3KT3TnV35m3",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/ab67616d0000b2735618ee6467c0becf0dd23d68",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/ab67616d00001e025618ee6467c0becf0dd23d68",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/ab67616d000048515618ee6467c0becf0dd23d68",
+          "width" : 64
+        } ],
+        "name" : "Emotion (Deluxe)",
+        "release_date" : "2015-09-25",
+        "release_date_precision" : "day",
+        "total_tracks" : 15,
+        "type" : "album",
+        "uri" : "spotify:album:1DFixLWuPkv3KT3TnV35m3"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/6sFIWsNpZYqfjUpaCgueju"
+        },
+        "href" : "https://api.spotify.com/v1/artists/6sFIWsNpZYqfjUpaCgueju",
+        "id" : "6sFIWsNpZYqfjUpaCgueju",
+        "name" : "Carly Rae Jepsen",
+        "type" : "artist",
+        "uri" : "spotify:artist:6sFIWsNpZYqfjUpaCgueju"
+      } ],
+      "available_markets" : [ "GB", "IE" ],
+      "disc_number" : 1,
+      "duration_ms" : 251320,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "USUM71507009"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/7xGfFoTpQ2E7fRF5lN10tr"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/7xGfFoTpQ2E7fRF5lN10tr",
+      "id" : "7xGfFoTpQ2E7fRF5lN10tr",
+      "is_local" : false,
+      "name" : "Run Away With Me",
+      "popularity" : 48,
+      "preview_url" : "https://p.scdn.co/mp3-preview/261ef08ead7a7d86516b6694baa687637f0d47b4?cid=a0a76faa34084bcbb1c0180760beda39",
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:7xGfFoTpQ2E7fRF5lN10tr"
+    },
+    "currently_playing_type" : "track",
+    "actions" : {
+      "disallows" : {
+        "resuming" : true,
+        "skipping_prev" : true
+      }
+    },
+    "is_playing" : true
+  }

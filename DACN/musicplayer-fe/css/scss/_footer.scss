@@ -1,0 +1,57 @@
+footer{
+    z-index: 999;
+    .ui-music-player-bar{
+        color:white;
+        height: 4em;
+        width: 100%;
+        padding: 0 0 0 0;
+        background-color: rgba(236, 179, 178, 0.95) !important;
+        .img-fluid{
+            height: 100%;
+            width: 4%;
+        }
+        .ui-bar-info-div{
+            width: 20%;
+            padding-left: 1em;
+            padding-right: 1em;
+            vertical-align: middle;
+            display: inline-block;
+            .ui-text-overflow-ellipsis{
+               display: block;
+            }
+            #ui-bar-title{
+                font-size: 1em;
+            }
+            #ui-bar-artist{
+                font-size: 0.9em;
+            }
+        }
+        #ui-music-player-icon{
+            :hover{
+                cursor: pointer;
+            }
+            align-items: center;
+            width: 100%;
+            display:flex;
+            justify-content:space-around;
+            #seekbar{
+                width: 40%;
+            }
+            #volumebar{
+                width: 7%;
+            }
+            i{
+                font-size: 1.5em;
+            }
+            .time{
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+            .ui-box-of-button{
+                width: 2.5%;
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}

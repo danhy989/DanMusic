@@ -2,80 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Controller/Home/HomePane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Controller/Library/ArtistPane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Controller/Library/GridPaneItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Controller/Library/PlaylistPane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Controller/SceneMusicPlayingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/DTO/MusicplayerTracksInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Dao/Dao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Dao/Impl/AlbumDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Dao/Impl/AlbumTrackDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Dao/Impl/GenreDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Dao/Impl/SingleDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Dao/Impl/TrackDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Static/DataStaticLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Util/EffectUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Util/PostgresSQLConnUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/Util/StringUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/entities/AlbumEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/entities/AlbumTrackEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/entities/GenreEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/entities/SingleEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Java/entities/TrackEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Resources/Css/hover.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Resources/Css/musicPlayingTransfer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Resources/Fxml/Home/homePane.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Resources/Fxml/Library/GridPaneItem.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Resources/Fxml/Library/LibListPane.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Resources/Fxml/SceneMusicPlaying.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/config/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/controller/TokenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/cronjob/TokenTasks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/enums/GrantTypeEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/enums/ResponseTypeEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/enums/ScopeEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/RestTemplateService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/impl/RestTemplateServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/statics/TokenStatic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/utils/StringUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/utils/TimeUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/resources/templates/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/JAVA_CORE.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DACN/DanMusi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../DACN/DanMusi/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/DanMusiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/DanMusiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/controller/SpotifyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/controller/SpotifyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/SpotifyClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/SpotifyClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/SpotifyClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/impl/SpotifyClientServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/utils/JSONUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/utils/JSONUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../DACN/DanMusi/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DACN/Spotify Client/WebPlaybackSDK-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../DACN/Spotify Client/WebPlaybackSDK-1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DanMusicPlayer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Controller/AlbumPane.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Controller/AlbumPane.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Controller/SinglePane.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Controller/SinglePane.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Controller/TrackPane.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Controller/TrackPane.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/DTO/Albums.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/DTO/CurrentPlayList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/DTO/CurrentPlayList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/DTO/Single.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/DTO/Single.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/DTO/Track.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/DTO/Track.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Service/AlbumService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Service/AlbumService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Service/MusicPlayerService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Service/MusicPlayerService$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Service/MusicPlayerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Service/MusicPlayerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Service/PlaylistService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Service/PlaylistService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Service/SingleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Service/SingleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Util/Mp3Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Util/Mp3Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Util/TimeUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Java/Util/TimeUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Main$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Resources/Fxml/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Resources/Fxml/Main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Resources/Fxml/album_items.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Resources/Fxml/album_items.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Resources/Fxml/track_row.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Resources/Fxml/track_row.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Resources/Music/1.2-Ex 1.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Resources/Music/The Heart Wants What It Wants - Selena G.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Resources/Music/people.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/Controller/AlbumPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/Controller/AlbumPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/Controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/Controller/SinglePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/Controller/SinglePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/Controller/TrackPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/Controller/TrackPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/DTO/Albums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/DTO/Album.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/DTO/CurrentPlayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/DTO/CurrentPlayList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/DTO/Single.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/DTO/Single.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/DTO/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/DTO/Track.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/Service/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/Service/AlbumService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/Service/MusicPlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/Service/MusicPlayerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/Service/PlaylistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/Service/PlaylistService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/Service/SingleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/Service/SingleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/Util/Mp3Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/Util/Mp3Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Java/Util/TimeUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/Util/TimeUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Resources/Fxml/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Resources/Fxml/Main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Resources/Fxml/album_items.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Resources/Fxml/album_items.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Resources/Fxml/track_row.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Resources/Fxml/track_row.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Resources/Music/1.2-Ex 1.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Resources/Music/The Heart Wants What It Wants - Selena G.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Resources/Music/people.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Resources/Fxml/SceneMusicPlaying.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DanMusicPlayer/sample/Resources/Fxml/SceneMusicPlaying.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Java/Dao/Impl/AlbumTrackDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Java/Dao/Impl/AlbumTrackDaoImpl.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -136,34 +86,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/MainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="85" selection-start-line="85" selection-end-line="85" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/scene/image/Image.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="1109" column="26" selection-start-line="1109" selection-start-column="26" selection-end-line="1109" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/SceneMusicPlaying.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
-              <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -181,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/SceneMusicPlayingController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="654">
-              <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+            <state relative-caret-position="462">
+              <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -192,39 +121,63 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/LibListPane.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
               <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/GridPaneItem.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
               <caret line="17" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/album_items.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="231">
-              <caret line="11" column="82" lean-forward="true" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="82" />
+              <caret line="11" column="82" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="82" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Resources/Css/musicPlayingTransfer.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/Home/HomePane.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sample/Resources/Css/musicPlayingTransfer.css">
+        <entry file="file://$PROJECT_DIR$/src/sample/Java/Dao/Impl/AlbumTrackDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+            <state relative-caret-position="679">
+              <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -313,7 +266,6 @@
         <option value="$PROJECT_DIR$/src/sample/Java/Dao/Impl/GenreDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/sample/Java/Dao/Dao.java" />
         <option value="$PROJECT_DIR$/src/sample/Java/Static/DataStaticLoader.java" />
-        <option value="$PROJECT_DIR$/src/sample/Java/Dao/Impl/AlbumTrackDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/sample/Resources/Fxml/Library/Playlist.fxml" />
         <option value="$PROJECT_DIR$/src/sample/Java/Controller/Library/GridPaneItem.java" />
         <option value="$PROJECT_DIR$/src/sample/Resources/Fxml/Library/PlaylistPane.fxml" />
@@ -351,6 +303,7 @@
         <option value="$PROJECT_DIR$/src/sample/Java/Controller/SceneMusicPlayingController.java" />
         <option value="$PROJECT_DIR$/src/sample/Resources/Fxml/SceneMusicPlaying.fxml" />
         <option value="$PROJECT_DIR$/src/sample/Resources/Css/musicPlayingTransfer.css" />
+        <option value="$PROJECT_DIR$/src/sample/Java/Dao/Impl/AlbumTrackDaoImpl.java" />
       </list>
     </option>
   </component>
@@ -362,10 +315,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
-    <option name="y" value="-277" />
-    <option name="width" value="1936" />
-    <option name="height" value="1066" />
+    <option name="x" value="240" />
+    <option name="y" value="131" />
+    <option name="width" value="1440" />
+    <option name="height" value="788" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -554,7 +507,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../postgresql-42.2.12.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -700,11 +653,13 @@
       <workItem from="1588350949216" duration="3736000" />
       <workItem from="1588357858532" duration="4281000" />
       <workItem from="1588401817602" duration="41866000" />
+      <workItem from="1588756801507" duration="40000" />
+      <workItem from="1589552682886" duration="241000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215152000" />
+    <option name="totallyTimeSpent" value="215433000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -716,9 +671,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-277" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17377399" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17697228" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" weight="0.32995737" />
       <window_info id="Designer" order="3" />
@@ -850,47 +806,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/ArtistPane/fxml.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/AlbumPane.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/ArtistPane.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/SongPane.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/Library/AlbumPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="19" column="119" selection-start-line="19" selection-start-column="119" selection-end-line="19" selection-end-column="119" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/ArtistPane/fxml.java" />
+    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/AlbumPane.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/ArtistPane.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/SongPane.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/Library/AlbumPane.java" />
     <entry file="file://$PROJECT_DIR$/src/sample/Java/Util/EffectUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -911,16 +831,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/Library/SongPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="62" column="44" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/Library/SongPane.java" />
     <entry file="file://$PROJECT_DIR$/src/sample/Java/DTO/Album.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
@@ -980,16 +891,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Java/Dao/Impl/AlbumTrackDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1056,16 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/Home/HomePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/Library/PlaylistPane.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="492">
@@ -1077,20 +968,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Home/homePane.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1281">
           <caret line="61" column="24" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/track_row.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="244" selection-start-line="9" selection-start-column="244" selection-end-line="9" selection-end-column="244" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Java/Dao/Impl/AlbumDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1130,12 +1021,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Main.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2310">
           <caret line="137" column="25" selection-start-line="137" selection-start-column="25" selection-end-line="137" selection-end-column="25" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/AlbumPane.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1175,28 +1066,37 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/single_items.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/sliderbar.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/LibListPane.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        <state relative-caret-position="1134">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/GridPaneItem.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/scene/image/Image.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20286">
+          <caret line="1109" column="26" selection-start-line="1109" selection-start-column="26" selection-end-line="1109" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/SceneMusicPlaying.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/Library/GridPaneItem.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1208,40 +1108,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/scene/image/Image.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="1109" column="26" selection-start-line="1109" selection-start-column="26" selection-end-line="1109" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/SceneMusicPlayingController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+        <state relative-caret-position="462">
+          <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/album_items.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/LibListPane.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="82" lean-forward="true" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="82" />
+        <state relative-caret-position="420">
+          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/Library/GridPaneItem.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/album_items.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="82" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="82" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Resources/Css/hover.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -1250,18 +1149,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Resources/Fxml/SceneMusicPlaying.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Resources/Css/musicPlayingTransfer.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Java/Controller/Home/HomePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Java/Dao/Impl/AlbumTrackDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<a href="#" id="spotifyAuthorization">
+    URL
+</a>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script th:inline="javascript">
+    $("#spotifyAuthorization").bind("click", function() {
+
+        var spotifyAuthorizeUrl = [[${spotifyAuthorizeUrl}]];
+        var spotifyRedirectUrl = [[${spotifyRedirectUrl}]];
+        var spotifyClientId = [[${spotifyClientId}]];
+        var spotifyScope = [[${spotifyScope}]];
+        var spotifyResponseType = [[${spotifyResponseType}]];
+
+        var generateRandomString = function(length) {
+            var text = '';
+            var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+            for (var i = 0; i < length; i++) {
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+            return text;
+        };
+        var state = generateRandomString(16);
+
+        var url = spotifyAuthorizeUrl+
+            "?client_id="+spotifyClientId+
+            "&response_type="+spotifyResponseType+
+            "&redirect_uri="+spotifyRedirectUrl+
+            "&scope="+spotifyScope+
+            "&state="+state;
+        document.cookie = "spotify_auth_state="+state;
+        $("#spotifyAuthorization").attr("href",url);
+        // console.log(url);
+        // console.log(state);
+    });
+</script>
+</body>
+</html>
