@@ -46,7 +46,8 @@ public class SpotifyController {
                 ScopeEnum.USER_READ_PLAYBACK_STATE.getType(),
                 ScopeEnum.USER_MODIFY_PLAYBACK_STATE.getType(),
                 ScopeEnum.USER_FOLLOW_READ.getType(),
-                ScopeEnum.USER_TOP_READ.getType()
+                ScopeEnum.USER_TOP_READ.getType(),
+                ScopeEnum.USER_READ_RECENTLY_PLAYED.getType()
                 )
         );
         model.addAttribute("spotifyResponseType", ResponseTypeEnum.CODE.getType());

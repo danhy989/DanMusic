@@ -28,7 +28,7 @@
       <div id="ui-menu" class="col-sm-2">
         <!-- Sidebar -->
         <nav id="sidebar">
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <input id="search-input" class="form-control" type="text" placeholder="Search" aria-label="Search">
           <ul>
             <li>
               <div class="row-menu active" data-ui-page="#musicPage">
@@ -166,6 +166,61 @@
           </div>
         </div>
 
+        <div id="search-result-page" class="ui-page">
+            <div id="id-search-result-page-content">
+                <div id="id-search-result-header">
+                  <h1>Search results</h1>
+                </div>
+                <div id="id-search-result-body">
+                  <div id="id-search-result-body-songs">
+                      <h2>Songs</h2>
+                      <table id="id-search-result-body-songs-table"  class="table table-striped abc">
+                        <tbody>
+                          <!-- <tr onclick="playings_page_select_row(id,'track')" id="id-search-result-body-songs-table_tr_1" class="ui_result_page_tr"> 
+                            <th scope="row" class="num ui-bold">  ${(i + 1)}  </th> 
+                            <td class="name ui-bold"> ${name}  </td> 
+                            <td><i class="fa fa-heart" aria-hidden="true"></i></td> 
+                            <td><i class="fas fa-ellipsis-h" aria-hidden="true"></i></td> 
+                            <td>  ${durationTime}  </td> 
+                            <td hidden>  ${uriTrack}  </td> 
+                            </tr> -->
+                        </tbody>
+                      </table>
+                  </div>
+                  <div id="id-search-result-body-album">
+                      <h2>Albums</h2>
+                      <ul class="auto-grid">
+                          <!-- <li onclick="artistalbumsSelected(id)" id="d">
+                            <div>
+                              <img src="image/unnamed.jpg" alt="">
+                              <p>Album1</p>
+                              <h5>Danhy</h5>
+                              <p hidden>${id}</p>
+                              <p hidden>${uri}</p>
+                            </div>
+                          </li> -->
+                     </ul>
+                  </div>
+                  <div id="id-search-result-body-artirs">
+                    <div class="ui-row-body-artirst-album-page-artirst-related">
+                      <h2>Artists</h2>
+                         <ul class="auto-grid">
+                          <!-- <li onclick="artistalbumsSelected(id)" id="d11">
+                            <div>
+                              <img src="image/unnamed.jpg" alt="">
+                              <p>Album1</p>
+                              <h5>Danhy</h5>
+                              <p hidden>${id}</p>
+                              <p hidden>${uri}</p>
+                            </div>
+                          </li> -->
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
         <div id="nowPlayingPage" class="ui-page">
           <div id="id-now-playing-page-content">
             <div class="ui-row-header-playing-page">
@@ -195,7 +250,16 @@
         </div>
 
         <div id="recentPlaysPage" class="ui-page">
-          recent plays page
+            <div class="ui-recent-play-page-header">
+                <h1>Recent plays</h1>
+            </div>
+            <div class="ui-recent-play-page-body">
+              <table id="id-recent-play-page-body-table"  class="table table-striped abc">
+                <tbody>
+                  
+                </tbody>
+              </table>
+            </div>
         </div>
 
         <div id="settingsPage" class="ui-page">

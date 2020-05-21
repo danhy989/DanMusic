@@ -33,6 +33,7 @@ var COLORS = ['#001f3f', '#0074D9', '#7FDBFF', '##39CCCC', '#3D9970', '#2ECC40',
 
 $(document).ready(function () {
     localStorage.setItem('progress_ms', TRACK_PROGRESS_MS_DEFAULT);
+    localStorage.setItem('isPlaying',false);
 
     var device_id = localStorage.getItem("device_id");
     var token = localStorage.getItem('access_token');
@@ -41,8 +42,9 @@ $(document).ready(function () {
     setAlbumsContentPage(COUNTRY_ALBUMS_TRACK_NEW_RELEASES_DEFAULT, TOTAL_ALBUMS_TRACK_NEW_RELEASES_DEFAULT, OFFSET_POSITION_DEFAULT);
     setTrackPlayingContentPage();
 
+
     getFollowedArtists();
-    getUsersTopArtists('artists','medium_term',5);
+    getUsersTopArtists('artists', 'medium_term', 5);
 
     $("#seekbar").change(function () {
         if (localStorage.getItem("isPlaying") == "true") {
@@ -82,6 +84,8 @@ $(document).ready(function () {
     $('#ui-menu .row-menu')
         .off('click.menuItemClick')
         .on('click.menuItemClick', function () {
+            getTrackRecentPlayed();
+
             let self = $(this);
             const showClass = 'show';
             const uiPageId = self.data('ui-page');
@@ -93,6 +97,8 @@ $(document).ready(function () {
             //Remove and add active class to ui-menu
             $('.row-menu').removeClass('active');
             $(self).addClass('active');
+
+
         });
 
     $('#ui-content-page-type .typeItem')
@@ -114,9 +120,31 @@ $(document).ready(function () {
             }
         })
 
+        $('#search-input').keyup(delay(function (e) {
+            if(this.value.trim()!== '' && this.value.trim()!==null){
+                $('.ui-page').removeClass('show');
+                $('#search-result-page').addClass('show');
+                getSearching(this.value);
+            }else{
+                $('.ui-page').removeClass('show');
+                $('#musicPage').addClass('show');
+            }
+          }, 500));
+          
+
 });
 
 
+function delay(callback, ms) {
+    var timer = 0;
+    return function() {
+      var context = this, args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        callback.apply(context, args);
+      }, ms || 0);
+    };
+}
 
 window.setInterval(function () {
 
@@ -239,14 +267,25 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             localStorage.setItem("isPlaying", true);
             document.getElementById("playPausebutton").className = "fas fa-pause-circle";
 
-            //add class row track playing
-            $('#ui-table-content-playing-list tr').each(function () {
-                var trackUri = $(this).find("td").eq(4).html();
-                if (trackUri === state.track_window.current_track.uri) {
-                    $('.ui_playings_page_tr').removeClass('active');
-                    $(this).addClass('active');
-                }
-            });
+            var current_show_element = document.getElementsByClassName('ui-page show');
+            var id_current_show_element = $(current_show_element).attr("id");
+            switch (id_current_show_element) {
+                case 'nowPlayingPage':
+                    $('#ui-table-content-playing-list tr').each(function () {
+                        var trackUri = $(this).find("td").eq(4).html();
+                        if (trackUri.trim() === state.track_window.current_track.uri.trim()) {
+                            $('.ui_playings_page_tr').removeClass('active');
+                            $(this).addClass('active');
+                        }
+                    });
+                    break;
+                case 'recentPlaysPage':
+                    
+                    break;
+                default:
+                    break;
+            }
+
         } else {
             if (state.paused == true) {
                 //pause music
@@ -501,7 +540,7 @@ function setTrackPlayingContentPage(id, market = null, url = null) {
                 }
                 return artists;
             }
-            const imageAlbum = data.images[1].url;
+            const imageAlbum = data.images[1].url?data.images[1].url:'';
 
             const uriAlbum = data.uri;
 
@@ -520,14 +559,14 @@ function setTrackPlayingContentPage(id, market = null, url = null) {
             }
 
             listTrack().forEach(t => {
-                var temp = '<tr onclick="playings_page_select_row(id)" id="playings_page_id_tr_' + t.num + '" class="ui_playings_page_tr">' +
-                    '<th scope="row" class="num ui-bold">' + t.num + '</th>' +
-                    '<td class="name ui-bold">' + t.name + '</td>' +
-                    '<td><i class="fa fa-heart" aria-hidden="true"></i></td>' +
-                    '<td><i class="fas fa-ellipsis-h" aria-hidden="true"></i></td>' +
-                    '<td>' + t.duration + '</td>' +
-                    '<td hidden>' + t.uri + '</td>' +
-                    '</tr>';
+                var temp = `<tr onclick="playings_page_select_row(id,'album')"  id="playings_page_id_tr_${t.num}" class="ui_playings_page_tr"> 
+                <th scope="row" class="num ui-bold">  ${t.num}  </th> 
+                <td class="name ui-bold">  ${t.name}  </td> 
+                <td><i class="fa fa-heart" aria-hidden="true"></i></td> 
+                <td><i class="fas fa-ellipsis-h" aria-hidden="true"></i></td> 
+                <td>  ${t.duration}  </td> 
+                <td hidden>  ${t.uri}  </td> 
+                </tr>`;
                 $('#ui-table-content-playing-list > tbody').append(temp);
             })
 
@@ -539,12 +578,24 @@ function setTrackPlayingContentPage(id, market = null, url = null) {
     });
 }
 
-function playings_page_select_row(id) {
+function playings_page_select_row(id, type) {
     var row_element = document.getElementById(id);
     var offset_position = $(row_element).children('th');
     var offset_position_num = $(offset_position).html();
     var uri = $('#id-row-info-header-playing-album-uri').html();
-    playAlbumSpotify(uri, Number(offset_position_num) - 1);
+
+    var urlTrack = $(row_element).children('td')[4];
+    var urlTrack_str = $(urlTrack).html();
+    if (type == 'track') {
+        //$('.ui_recent_page_tr').removeClass('active');
+        console.log(urlTrack_str);
+        $('.ui_result_page_tr').removeClass('active');
+        $(row_element).addClass('active');
+        playTrackSpotify(urlTrack_str.trim());
+    }
+    if (type == 'album') {
+        playAlbumSpotify(uri, Number(offset_position_num) - 1);
+    }
 }
 
 function setSongsContentPage(country, limit, offset, url = null) {
@@ -730,10 +781,10 @@ function getFollowedArtists(type = 'artist', after = null, limit = null) {
             var items = data.artists.items;
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
-                var imageUrl = item.images[1].url;
+                var imageUrl = item.images[1].url?item.images[1].url:'';
                 var name = item.name;
                 var id = item.id;
-                $('#id-followed-artists .auto-grid').append(`<li onclick="artirst_page_select_row(id)" id="id_artirst_page_li_${i+1}">
+                $('#id-followed-artists .auto-grid').append(`<li onclick="artirst_page_select_row(id)" id="id_artirst_page_li_${i + 1}">
             <div>
               <img  src="${imageUrl}" alt="">
               <h5>${name}</h5>
@@ -745,7 +796,7 @@ function getFollowedArtists(type = 'artist', after = null, limit = null) {
     });
 }
 
-function getUsersTopArtists(type='artists',time_range=null,limit=null,offset=null) {
+function getUsersTopArtists(type = 'artists', time_range = null, limit = null, offset = null) {
     $('#id-users-top-artists .auto-grid').html('');
     const token = localStorage.getItem('access_token');
     var url = `https://api.spotify.com/v1/me/top/${type}?`;
@@ -761,8 +812,8 @@ function getUsersTopArtists(type='artists',time_range=null,limit=null,offset=nul
 
     var bol = url.indexOf("?&");
 
-    if(bol !== -1){
-        url.replace("?&","?");
+    if (bol !== -1) {
+        url.replace("?&", "?");
     }
 
     $.ajax({
@@ -775,13 +826,12 @@ function getUsersTopArtists(type='artists',time_range=null,limit=null,offset=nul
         },
         success: function (data) {
             var items = data.items;
-            console.log(items);
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
-                var imageUrl = item.images[1].url;
+                var imageUrl = item.images[1].url?item.images[1].url:'';
                 var name = item.name;
                 var id = item.id;
-                $('#id-users-top-artists .auto-grid').append(`<li onclick="artirst_page_select_row(id)" id="id_artirst_hot_page_li_${i+1}">
+                $('#id-users-top-artists .auto-grid').append(`<li onclick="artirst_page_select_row(id)" id="id_artirst_hot_page_li_${i + 1}">
             <div>
               <img  src="${imageUrl}" alt="">
               <h5>${name}</h5>
@@ -791,9 +841,9 @@ function getUsersTopArtists(type='artists',time_range=null,limit=null,offset=nul
             }
         }
     });
-}   
+}
 
-function setArtirstAlbumPage(id){
+function setArtirstAlbumPage(id) {
     $('#ui-row-body-artirst-album-page .auto-grid').html('');
     $('.ui-row-body-artirst-album-page-artirst-related .auto-grid').html('');
 
@@ -812,23 +862,23 @@ function setArtirstAlbumPage(id){
             'Authorization': 'Bearer ' + token
         },
         success: function (data) {
-                var imageUrl = data.images[1].url;
-                var name = data.name;
-                var id = data.id;
-                var genres = () => {
-                    var rs = '';
-                    data.genres.forEach(element => {
-                        rs+=' '+element;
-                    });
-                    return rs;
-                }
-                var follower = data.followers.total;
+            var imageUrl = data.images[1].url?data.images[1].url:'';
+            var name = data.name;
+            var id = data.id;
+            var genres = () => {
+                var rs = '';
+                data.genres.forEach(element => {
+                    rs += ' ' + element;
+                });
+                return rs;
+            }
+            var follower = data.followers.total;
 
-                $('#id-row-img-header-artirst-album').attr('src',imageUrl);
-                $('#id-header-artirst-album-name').html(name);
-                $('#id-header-artirst-album-genres').html('Genres: '+ genres());
-                $('#id-header-artirst-album-artirst-id').html(id);
-                $('#id-header-artirst-album-follower').html('Following: '+follower+' people');
+            $('#id-row-img-header-artirst-album').attr('src', imageUrl);
+            $('#id-header-artirst-album-name').html(name);
+            $('#id-header-artirst-album-genres').html('Genres: ' + genres());
+            $('#id-header-artirst-album-artirst-id').html(id);
+            $('#id-header-artirst-album-follower').html('Following: ' + follower + ' people');
         }
     });
 
@@ -842,15 +892,15 @@ function setArtirstAlbumPage(id){
         },
         success: function (data) {
             var items = data.items;
-            for(var i=0;i<items.length;i++){
+            for (var i = 0; i < items.length; i++) {
                 var item = items[i];
-                var imageAlbum = item.images[1].url;
+                var imageAlbum = item.images[1].url?item.images[1].url:'';
                 var name = item.name;
                 var release_date = item.release_date;
                 var uri = item.uri;
                 var id = item.id;
 
-                $('.ui-row-body-artirst-album-page-albums .auto-grid').append(`<li onclick="artistalbumsSelected(id)" id="id-artist-albums-li-${i+1}">
+                $('.ui-row-body-artirst-album-page-albums .auto-grid').append(`<li onclick="artistalbumsSelected(id)" id="id-artist-albums-li-${i + 1}">
                 <div>
                   <img src="${imageAlbum}" alt="">
                   <p>${release_date}</p>
@@ -873,14 +923,15 @@ function setArtirstAlbumPage(id){
         },
         success: function (data) {
             var items = data.artists;
-            console.log('items',items);
-            for(var i=0;i<items.length;i++){
+            console.log('items', items);
+            for (var i = 0; i < items.length; i++) {
                 var item = items[i];
-                var imageUrl = item.images[1].url;
+                console.log('asdasda',item);
+                var imageUrl = item.images[1].url?item.images[1].url:'';
                 var name = item.name;
                 var id = item.id;
 
-                $('.ui-row-body-artirst-album-page-artirst-related .auto-grid').append(`<li onclick="artistRelatedSelected(id)" id="id-artist-Related-li-${i+1}">
+                $('.ui-row-body-artirst-album-page-artirst-related .auto-grid').append(`<li onclick="artistRelatedSelected(id)" id="id-artist-Related-li-${i + 1}">
                 <div>
                   <img src="${imageUrl}" alt="">
                   <h5>${name}</h5>
@@ -892,7 +943,7 @@ function setArtirstAlbumPage(id){
     });
 }
 
-function artistalbumsSelected(id){
+function artistalbumsSelected(id) {
     var li = document.getElementById(id);
     var div = $(li).children()[0];
     var id_albumSelected = $(div).children()[3];
@@ -901,21 +952,21 @@ function artistalbumsSelected(id){
     var url_albumSelected_str = $(url_albumSelected).html();
 
     setTrackPlayingContentPage(id_albumSelected_str);
- 
+
 
     $('.ui-page').removeClass("show");
     $('#nowPlayingPage').addClass("show");
     playAlbumSpotify(url_albumSelected_str);
 }
 
-function artistRelatedSelected(id){
+function artistRelatedSelected(id) {
     var li = document.getElementById(id);
     var div = $(li).children()[0];
     var artirst_id = $(div).children()[2];
     var artirst_id_str = $(artirst_id).html();
     setArtirstAlbumPage(artirst_id_str);
 
-    window.scrollTo(0, 0); 
+    window.scrollTo(0, 0);
 }
 
 function artirst_page_select_row(id) {
@@ -923,9 +974,176 @@ function artirst_page_select_row(id) {
     var div = $(li).children()[0];
     var artirst_id = $(div).children()[2];
     var artirst_id_str = $(artirst_id).html();
-
+    console.log('abc');
     setArtirstAlbumPage(artirst_id_str);
 
+    
     $('.ui-page').removeClass('show');
     $('#artirst-album-page').addClass('show');
+}
+
+function getTrackRecentPlayed(limit = null, before = null, after = null) {
+    $('#id-recent-play-page-body-table > tbody').html('');
+
+    var url = `https://api.spotify.com/v1/me/player/recently-played?type=track`;
+
+    if (limit != null) {
+        url = url + `&limit=${limit}`;
+    }
+    if (before != null) {
+        url = url + `&before=${before}`;
+    }
+    if (after != null) {
+        url = url + `&after=${after}`;
+    }
+    const token = localStorage.getItem('access_token');
+    $.ajax({
+        url: url,
+        type: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        success: function (data) {
+            var items = data.items;
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                var track = item.track;
+                var name = track.name;
+                var durationTime = convertTimeToString(track.duration_ms);
+                var uriTrack = track.uri;
+
+                var temp = `<tr onclick="playings_page_select_row(id,'track')" id="id_recent_page_id_tr_${(i + 1)}" class="ui_recent_page_tr"> 
+                    <th scope="row" class="num ui-bold">  ${(i + 1)}  </th> 
+                    <td class="name ui-bold"> ${name}  </td> 
+                    <td><i class="fa fa-heart" aria-hidden="true"></i></td> 
+                    <td><i class="fas fa-ellipsis-h" aria-hidden="true"></i></td> 
+                    <td>  ${durationTime}  </td> 
+                    <td hidden>  ${uriTrack}  </td> 
+                    </tr>;`;
+                $('#id-recent-play-page-body-table > tbody').append(temp);
+            }
+        }
+    });
+}
+
+function getSearching(q){
+    $('#id-search-result-body-album .auto-grid').html('');
+    $('#id-search-result-body-artirs .auto-grid').html('');
+    $('#id-search-result-body-songs tbody').html('');
+
+        const token = localStorage.getItem('access_token');
+
+    //fake data
+    var type ="track,album,artist";
+    var market = "VN";
+    var limit = 10;
+    var offset = 0;
+
+    var url = `https://api.spotify.com/v1/search?q=${q}&type=${type}&market=${market}&limit=${limit}&offset=${offset}`;
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        success: function (data) {
+            var albums = data.albums;
+            var artists = data.artists;
+            var tracks = data.tracks;
+
+            //Set Albums
+            if(albums.items.length > 0){
+                $('#id-search-result-body-album').show();
+                var items = albums.items;
+                for(var i=0;i<items.length;i++){
+                    var item = items[i];
+                    var name = item.name;
+                    var id = item.id;
+                    var imageAlbum = item.images[1].url?item.images[1].url:'';
+                    var uri = item.uri;
+                    const artists = () => {
+                        if (item.artists.length > 1) {
+                            var artists = '';
+                            item.artists.forEach(element => {
+                                if (artists == '') {
+                                    artists = element.name;
+                                } else {
+                                    artists = artists + ' & ' + element.name;
+                                }
+                            });
+        
+                        } else {
+                            artists = item.artists[0].name;
+                        }
+                        return artists;
+                    }
+
+                    $('#id-search-result-body-album .auto-grid').append(
+                        `<li onclick="artistalbumsSelected(id)" id="id-search-result-albums-li-${i + 1}">
+                <div>
+                  <img src="${imageAlbum}" alt="">
+                  <h5>${name}</h5>
+                  <p>${artists()}</p>
+                  <p hidden>${id}</p>
+                  <p hidden>${uri}</p>
+                </div>
+              </li>`);
+              
+                }
+            }else{
+                $('#id-search-result-body-album').hide();
+            }
+
+            //Set Artists
+            if(artists.items.length > 0){
+                $('#id-search-result-body-artirs').show();
+                var items = artists.items;
+                for(var i=0;i<items.length;i++){
+                    var item = items[i];
+                var imageUrl = item.images[1].url?item.images[1].url:'';
+                var name = item.name;
+                var id = item.id;
+
+                $('.ui-row-body-artirst-album-page-artirst-related .auto-grid').append(`<li onclick="artirst_page_select_row(id)" id="id-artist-Related-li-${i + 1}">
+                <div>
+                  <img src="${imageUrl}" alt="">
+                  <h5>${name}</h5>
+                  <p hidden>${id}</p>
+                </div>
+              </li>`);
+                }
+            }else{
+                $('#id-search-result-body-artirs').hide();
+            }
+
+            //Set Tracks
+            if(tracks.items.length > 0){
+                $('#id-search-result-body-songs').show();
+                var items = tracks.items;
+                for(var i=0;i<items.length;i++){
+                    var item = items[i];
+                    var name = item.name;
+                    var durationTime = convertTimeToString(item.duration_ms);
+                    var uriTrack = item.uri;
+
+                    var temp = `<tr onclick="playings_page_select_row(id,'track')" id="id-search-result-body-songs-table_tr_${(i+1)}" class="ui_result_page_tr"> 
+                    <th scope="row" class="num ui-bold">  ${(i + 1)}  </th> 
+                    <td class="name ui-bold"> ${name}  </td> 
+                    <td><i class="fa fa-heart" aria-hidden="true"></i></td> 
+                    <td><i class="fas fa-ellipsis-h" aria-hidden="true"></i></td> 
+                    <td>  ${durationTime}  </td> 
+                    <td hidden>  ${uriTrack}  </td> 
+                    </tr>`;
+                    $('#id-search-result-body-songs-table > tbody').append(temp);
+                }
+            }else{
+                $('#id-search-result-body-songs').hide();
+            }
+        }
+    });
 }
