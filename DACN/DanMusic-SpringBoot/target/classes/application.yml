@@ -1,0 +1,31 @@
+spring:
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    # excluded-view-names:
+    # template-resolver-order:
+    # view-names:
+
+logging:
+  level:
+    root: WARN
+    com.danhy989: DEBUG
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+
+spotify:
+  client:
+    url:
+      authorize: https://accounts.spotify.com/authorize
+      token: https://accounts.spotify.com/api/token
+      redirect: http://localhost:8080/token/callback
+    info:
+      client_id: a0a76faa34084bcbb1c0180760beda39
+      client_secret: c5e48bde19404544a38d60f10fdab743

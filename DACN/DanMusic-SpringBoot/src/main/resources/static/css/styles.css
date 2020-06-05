@@ -1,0 +1,709 @@
+body {
+  padding: 0 1em 1em 1em;
+  margin-bottom: 7em;
+}
+
+body #sidebar {
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 999;
+  color: #fff;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 5em;
+}
+
+body #sidebar ul:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+body #sidebar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+body #sidebar ul li:first-child {
+  margin-top: 1em;
+}
+
+body #sidebar ul li:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+body #sidebar ul li :hover {
+  cursor: pointer;
+}
+
+body #sidebar ul li .row-menu {
+  padding-left: 1em;
+  height: 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body #sidebar ul li .row-menu i {
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body #sidebar ul li .row-menu a {
+  display: block;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+body #sidebar ul li .row-menu.active {
+  border-left: 5px solid black;
+}
+
+body #sidebar ul li .row-menu.active i {
+  color: black;
+}
+
+body #sidebar ul li .row-menu.active a {
+  color: black;
+}
+
+body #sidebar ul li :not(i):not(a):hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+body .ui-page {
+  display: none;
+}
+
+body .ui-page.show {
+  display: block;
+  padding-top: 4em;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-header {
+  margin-bottom: 2em;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-header h1 {
+  font-size: 55px;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body {
+  font-size: 16px;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body #ui-content-page-type {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body #ui-content-page-type :hover {
+  cursor: pointer;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body #ui-content-page-type .active {
+  color: black;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music {
+  display: none;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music.show {
+  display: block;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-songs #ui-content-page-action {
+  color: black;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-songs #ui-content-page-action div {
+  margin-right: 2em;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-songs #ui-table-content-songs-list {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-songs #ui-table-content-songs-list tbody i:hover {
+  cursor: pointer;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-songs #ui-table-content-songs-list tbody tr {
+  color: black;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-songs #ui-table-content-songs-list tbody tr.active {
+  color: blue;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-songs #ui-table-content-songs-list tbody tr .ui-bold {
+  font-weight: 600;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-songs #ui-table-content-songs-list tbody tr .num {
+  width: 1em;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-songs #ui-table-content-songs-list tbody tr .name {
+  width: 30em;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-albums .auto-grid {
+  --auto-grid-min-size: 12rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(var(--auto-grid-min-size), 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+  grid-gap: 1rem;
+  list-style-type: none;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-albums .auto-grid li {
+  padding: 1rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: black;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-albums .auto-grid li div {
+  margin: auto;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-albums .auto-grid li div :hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-albums .auto-grid li div img {
+  margin-bottom: 1rem;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-transition: .5s ease !important;
+  transition: .5s ease !important;
+  -webkit-backface-visibility: hidden !important;
+          backface-visibility: hidden !important;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-albums .auto-grid li div img.ui-music-artists-img {
+  border-radius: 50%;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-albums .auto-grid li div h5 {
+  margin-bottom: 0;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-albums .auto-grid li div p {
+  padding: 0;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-artists {
+  margin: 2rem 1rem 1rem 2rem;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-artists .auto-grid {
+  --auto-grid-min-size: 12rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(var(--auto-grid-min-size), 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+  grid-gap: 1rem;
+  list-style-type: none;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-artists .auto-grid li {
+  padding: 1rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: black;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-artists .auto-grid li div {
+  margin: auto;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-artists .auto-grid li div :hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-artists .auto-grid li div img {
+  margin-bottom: 1rem;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-transition: .5s ease !important;
+  transition: .5s ease !important;
+  -webkit-backface-visibility: hidden !important;
+          backface-visibility: hidden !important;
+  border-radius: 50%;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-artists .auto-grid li div h5 {
+  margin-bottom: 0;
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-artists .ui-music-artists-title-sub {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body .ui-page.show#musicPage #id-music-page-content .ui-content-page-body .ui-content-page-body-music#id-content-page-music-artists #id-followed-artists {
+  margin-bottom: 8rem;
+}
+
+body .ui-page.show#nowPlayingPage #id-now-playing-page-content {
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+body .ui-page.show#nowPlayingPage #id-now-playing-page-content .ui-row-header-playing-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .ui-page.show#nowPlayingPage #id-now-playing-page-content .ui-row-header-playing-page .ui-row-img-header-playing {
+  margin-right: 2rem;
+  margin-bottom: 4rem;
+}
+
+body .ui-page.show#nowPlayingPage #id-now-playing-page-content .ui-row-header-playing-page .ui-row-info-header-playing {
+  padding-top: 1rem;
+}
+
+body .ui-page.show#nowPlayingPage #id-now-playing-page-content .ui-row-header-playing-page .ui-row-info-header-playing p {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+}
+
+body .ui-page.show#nowPlayingPage #id-now-playing-page-content .ui-row-body-playing-page #ui-table-content-playing-list tbody {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body .ui-page.show#nowPlayingPage #id-now-playing-page-content .ui-row-body-playing-page #ui-table-content-playing-list tbody .ui_playings_page_tr.active {
+  color: blue;
+}
+
+body .ui-page.show#nowPlayingPage #id-now-playing-page-content .ui-row-body-playing-page #ui-table-content-playing-list tbody .ui_playings_page_tr .ui-bold {
+  font-weight: 500;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content {
+  padding: 1rem 3rem 1rem 1rem;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-header-artirst-album-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-header-artirst-album-page .ui-row-img-header-artirst-album {
+  margin-right: 2rem;
+  margin-bottom: 4rem;
+  border-radius: 50%;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-header-artirst-album-page .ui-row-info-header-artirst-album {
+  padding-top: 1rem;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-header-artirst-album-page .ui-row-info-header-artirst-album p {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page {
+  margin: 1rem 1rem 1rem 3rem;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-albums {
+  margin-bottom: 3rem;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-albums .auto-grid {
+  --auto-grid-min-size: 12rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(var(--auto-grid-min-size), 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+  grid-gap: 1rem;
+  list-style-type: none;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-albums .auto-grid li {
+  padding: 1rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: black;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-albums .auto-grid li div {
+  margin: auto;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-albums .auto-grid li div :hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-albums .auto-grid li div img {
+  margin-bottom: 1rem;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-transition: .5s ease !important;
+  transition: .5s ease !important;
+  -webkit-backface-visibility: hidden !important;
+          backface-visibility: hidden !important;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-albums .auto-grid li div h5 {
+  margin-bottom: 0;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-artirst-related .auto-grid {
+  --auto-grid-min-size: 12rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(var(--auto-grid-min-size), 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+  grid-gap: 1rem;
+  list-style-type: none;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-artirst-related .auto-grid li {
+  padding: 1rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: black;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-artirst-related .auto-grid li div {
+  margin: auto;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-artirst-related .auto-grid li div :hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-artirst-related .auto-grid li div img {
+  margin-bottom: 1rem;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-transition: .5s ease !important;
+  transition: .5s ease !important;
+  -webkit-backface-visibility: hidden !important;
+          backface-visibility: hidden !important;
+  border-radius: 50%;
+}
+
+body .ui-page.show#artirst-album-page #id-artirst-album-page-content #ui-row-body-artirst-album-page .ui-row-body-artirst-album-page-artirst-related .auto-grid li div h5 {
+  margin-bottom: 0;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content {
+  padding: 1rem 3rem 1rem 1rem;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-header {
+  margin-bottom: 4rem;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body {
+  margin-left: 1rem;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-songs {
+  margin-bottom: 3rem;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-songs #id-search-result-body-songs-table tbody {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-songs #id-search-result-body-songs-table tbody .ui_result_page_tr.active {
+  color: blue;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-songs #id-search-result-body-songs-table tbody .ui_result_page_tr .ui-bold {
+  font-weight: 500;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-album {
+  margin-bottom: 3rem;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-album .auto-grid {
+  --auto-grid-min-size: 12rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(var(--auto-grid-min-size), 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+  grid-gap: 1rem;
+  list-style-type: none;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-album .auto-grid li {
+  padding: 1rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: black;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-album .auto-grid li div {
+  margin: auto;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-album .auto-grid li div :hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-album .auto-grid li div img {
+  margin-bottom: 1rem;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-transition: .5s ease !important;
+  transition: .5s ease !important;
+  -webkit-backface-visibility: hidden !important;
+          backface-visibility: hidden !important;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-album .auto-grid li div h5 {
+  margin-bottom: 0;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-artirs .auto-grid {
+  --auto-grid-min-size: 12rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(var(--auto-grid-min-size), 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+  grid-gap: 1rem;
+  list-style-type: none;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-artirs .auto-grid li {
+  padding: 1rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: black;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-artirs .auto-grid li div {
+  margin: auto;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-artirs .auto-grid li div :hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-artirs .auto-grid li div img {
+  margin-bottom: 1rem;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-transition: .5s ease !important;
+  transition: .5s ease !important;
+  -webkit-backface-visibility: hidden !important;
+          backface-visibility: hidden !important;
+  border-radius: 50%;
+}
+
+body .ui-page.show#search-result-page #id-search-result-page-content #id-search-result-body #id-search-result-body-artirs .auto-grid li div h5 {
+  margin-bottom: 0;
+}
+
+body .ui-page.show#recentPlaysPage .ui-recent-play-page-header {
+  margin-bottom: 3rem;
+}
+
+body .ui-page.show#recentPlaysPage .ui-recent-play-page-body #id-recent-play-page-body-table tbody {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body .ui-page.show#recentPlaysPage .ui-recent-play-page-body #id-recent-play-page-body-table tbody .ui_recent_page_tr.active {
+  color: blue;
+}
+
+body .ui-page.show#recentPlaysPage .ui-recent-play-page-body #id-recent-play-page-body-table tbody .ui_recent_page_tr .ui-bold {
+  font-weight: 500;
+}
+
+body .ui-page.show#playlistsPage .ui-playlist-page-content {
+  padding: 1rem 3rem 1rem 1rem;
+}
+
+body .ui-page.show#playlistsPage .ui-playlist-page-content .ui-playlist-page-header {
+  margin-bottom: 3rem;
+}
+
+body .ui-page.show#playlistsPage .ui-playlist-page-content .ui-playlist-page-body .auto-grid {
+  --auto-grid-min-size: 12rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(var(--auto-grid-min-size), 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+  grid-gap: 1rem;
+  list-style-type: none;
+}
+
+body .ui-page.show#playlistsPage .ui-playlist-page-content .ui-playlist-page-body .auto-grid li {
+  padding: 1rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: black;
+}
+
+body .ui-page.show#playlistsPage .ui-playlist-page-content .ui-playlist-page-body .auto-grid li div {
+  margin: auto;
+}
+
+body .ui-page.show#playlistsPage .ui-playlist-page-content .ui-playlist-page-body .auto-grid li div :hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+body .ui-page.show#playlistsPage .ui-playlist-page-content .ui-playlist-page-body .auto-grid li div img {
+  margin-bottom: 1rem;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-transition: .5s ease !important;
+  transition: .5s ease !important;
+  -webkit-backface-visibility: hidden !important;
+          backface-visibility: hidden !important;
+}
+
+body .ui-page.show#playlistsPage .ui-playlist-page-content .ui-playlist-page-body .auto-grid li div h5 {
+  margin-bottom: 0;
+}
+
+body #myModal .modal-body .ui-dialog-body-signup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 1rem;
+}
+
+body #myModal .modal-body .ui-dialog-body-signup .btn {
+  width: 50%;
+}
+
+body #myModal .modal-body .ui-dialog-body-login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+footer {
+  z-index: 999;
+}
+
+footer .ui-music-player-bar {
+  color: white;
+  height: 4em;
+  width: 100%;
+  padding: 0 0 0 0;
+  background-color: rgba(236, 179, 178, 0.95) !important;
+}
+
+footer .ui-music-player-bar .img-fluid {
+  height: 100%;
+  width: 4%;
+}
+
+footer .ui-music-player-bar .ui-bar-info-div {
+  width: 20%;
+  padding-left: 1em;
+  padding-right: 1em;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+footer .ui-music-player-bar .ui-bar-info-div .ui-text-overflow-ellipsis {
+  display: block;
+}
+
+footer .ui-music-player-bar .ui-bar-info-div #ui-bar-title {
+  font-size: 1em;
+}
+
+footer .ui-music-player-bar .ui-bar-info-div #ui-bar-artist {
+  font-size: 0.9em;
+}
+
+footer .ui-music-player-bar #ui-music-player-icon {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+footer .ui-music-player-bar #ui-music-player-icon :hover {
+  cursor: pointer;
+}
+
+footer .ui-music-player-bar #ui-music-player-icon #seekbar {
+  width: 40%;
+}
+
+footer .ui-music-player-bar #ui-music-player-icon #volumebar {
+  width: 7%;
+}
+
+footer .ui-music-player-bar #ui-music-player-icon i {
+  font-size: 1.5em;
+}
+
+footer .ui-music-player-bar #ui-music-player-icon .time {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+footer .ui-music-player-bar #ui-music-player-icon .ui-box-of-button {
+  width: 2.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=styles.css.map */

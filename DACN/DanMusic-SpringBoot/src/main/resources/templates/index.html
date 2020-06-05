@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DanMusic</title>
+  <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.css" th:href="@{/bootstrap/css/bootstrap.css}"/>
+  <link type="text/css" rel="stylesheet" href="/css/styles.css" th:href="@{/css/styles.css}"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"/>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <script type="text/javascript" src="https://sdk.scdn.co/spotify-player.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+          integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+          crossorigin="anonymous"></script>
+
+  <script type="text/javascript" th:src="@{/js/jquery-3.5.1.min.js}"></script>
+  <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.js}"></script>
+  <script type="text/javascript" th:src="@{/js/music-player.js}">
+  </script>
+  <script th:inline="javascript">
+    var token = [[${token}]];
+    if(undefined !== token && null !== token){
+      localStorage.setItem('token',JSON.stringify(token));
+      localStorage.setItem('access_token',token.access_token);
+    }
+  </script>
+</head>
+
+<body style="background-color: rgb(237, 237, 237);">
+  <div class=".container-fluid ui-body">
+    <div class="row">
+      <div id="ui-menu" class="col-sm-2">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+          <input id="search-input" class="form-control" type="text" placeholder="Search" aria-label="Search"/>
+          <ul>
+            <li>
+              <div class="row-menu active" data-ui-page="#musicPage">
+                <i class="fas fa-music " aria-hidden="true"></i> <a>Music</a>
+              </div>
+            </li>
+            <li>
+              <div class="row-menu" data-ui-page="#radioPage">
+                <i class="fas fa-broadcast-tower" aria-hidden="true"></i> <a>Radio</a>
+              </div>
+            </li>
+            <li>
+              <div class="row-menu" data-ui-page="#nowPlayingPage">
+                <i class="fab fa-spotify" aria-hidden="true"></i> <a>Now playing</a>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <div class="row-menu" data-ui-page="#likedPage">
+                <i class="far fa-heart" aria-hidden="true"></i> <a>Liked</a>
+              </div>
+            </li>
+            <li>
+              <div class="row-menu" data-ui-page="#playlistsPage">
+                <i class="fas fa-list" aria-hidden="true"></i> <a>Playlists</a>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <div class="row-menu" data-ui-page="#recentPlaysPage">
+                <i class="far fa-clock " aria-hidden="true"></i> <a>Recent Plays</a>
+              </div>
+            </li>
+            <li>
+              <div class="row-menu" data-ui-page="#settingsPage">
+                <i class="fas fa-cogs" aria-hidden="true"></i> <a>Settings</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="col-sm-10">
+        <div id="musicPage" class="ui-page show">
+          <div id="id-music-page-content">
+            <div class="ui-content-page-header">
+              <h1>Music</h1>
+            </div>
+
+            <div id="id-content-page-body-songs" class="ui-content-page-body show">
+              <div id="ui-content-page-type" class="d-flex flex-row bd-highlight mb-3">
+                <div data-ui-page="#id-content-page-music-songs" class="p-2 bd-highlight typeItem active">Songs</div>
+                <div data-ui-page="#id-content-page-music-albums" class="p-2 bd-highlight typeItem">Albums</div>
+                <div data-ui-page="#id-content-page-music-artists" class="p-2 bd-highlight typeItem">Artists</div>
+              </div>
+
+              <div id="id-content-page-music-songs" class="ui-content-page-body-music show">
+                <div id="ui-content-page-action" class="d-flex flex-row bd-highlight mb-3">
+                  <div class="p-2 bd-highlight">
+                    <i class="fa fa-random" aria-hidden="true"></i> Shuffle all
+                  </div>
+                  <div class="p-2 bd-highlight">
+                    <i class="fas fa-long-arrow-alt-up" aria-hidden="true"></i> Date added
+                  </div>
+
+                </div>
+
+                <table id="ui-table-content-songs-list" class="table table-striped">
+                  <tbody>
+                    <tr class="row-track">
+                      <td>1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div id="id-content-page-music-albums" class="ui-content-page-body-music">
+                <ul class="auto-grid">
+
+                </ul>
+              </div>
+
+              <div id="id-content-page-music-artists" class="ui-content-page-body-music">
+                <div id="id-followed-artists">
+                  <h2 class="ui-music-artists-title">Artirst</h2>
+                  <p class="ui-music-artists-title-sub">Based on the artists you followed</p>
+                  <ul class="auto-grid">
+
+                  </ul>
+                </div>
+                <div id="id-users-top-artists">
+                  <h2 class="ui-music-artists-title">Recommended artists</h2>
+                  <p class="ui-music-artists-title-sub">Based on the songs and album you like</p>
+                  <ul class="auto-grid">
+
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="radioPage" class="ui-page">
+          Radio Page
+        </div>
+
+        <div id="artirst-album-page" class="ui-page">
+          <div id="id-artirst-album-page-content">
+            <div id="ui-row-header-artirst-album-page">
+              <img id="id-row-img-header-artirst-album" th:src="@{/image/unnamed.jpg}" alt=""
+                class="ui-row-img-header-artirst-album"/>
+              <div class="ui-row-info-header-artirst-album">
+                <h1 id="id-header-artirst-album-name">Akon</h1>
+                <p id="id-header-artirst-album-genres">Hiphop / rap</p>
+                <p id="id-header-artirst-album-follower">22091998</p>
+                <p hidden="hidden" id="id-header-artirst-album-artirst-id"></p>
+              </div>
+            </div>
+            <div id="ui-row-body-artirst-album-page">
+              <div class="ui-row-body-artirst-album-page-albums">
+                <h2>Albums</h2>
+                <ul class="auto-grid">
+
+                </ul>
+              </div>
+              <div class="ui-row-body-artirst-album-page-artirst-related">
+                <h2>More Artirst</h2>
+                <ul class="auto-grid">
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="search-result-page" class="ui-page">
+          <div id="id-search-result-page-content">
+            <div id="id-search-result-header">
+              <h1>Search results</h1>
+            </div>
+            <div id="id-search-result-body">
+              <div id="id-search-result-body-songs">
+                <h2>Songs</h2>
+                <table id="id-search-result-body-songs-table" class="table table-striped abc">
+                  <tbody>
+                    <!-- <tr onclick="playings_page_select_row(id,'track')" id="id-search-result-body-songs-table_tr_1" class="ui_result_page_tr">
+                            <th scope="row" class="num ui-bold">  ${(i + 1)}  </th>
+                            <td class="name ui-bold"> ${name}  </td>
+                            <td><i class="fa fa-heart" aria-hidden="true"></i></td>
+                            <td><i class="fas fa-ellipsis-h" aria-hidden="true"></i></td>
+                            <td>  ${durationTime}  </td>
+                            <td hidden>  ${uriTrack}  </td>
+                            </tr> -->
+                  </tbody>
+                </table>
+              </div>
+              <div id="id-search-result-body-album">
+                <h2>Albums</h2>
+                <ul class="auto-grid">
+                  <!-- <li onclick="artistalbumsSelected(id)" id="d">
+                            <div>
+                              <img src="image/unnamed.jpg" alt=""/>
+                              <p>Album1</p>
+                              <h5>Danhy</h5>
+                              <p hidden>${id}</p>
+                              <p hidden>${uri}</p>
+                            </div>
+                          </li> -->
+                </ul>
+              </div>
+              <div id="id-search-result-body-artirs">
+                <div class="ui-row-body-artirst-album-page-artirst-related">
+                  <h2>Artists</h2>
+                  <ul class="auto-grid">
+                    <!-- <li onclick="artistalbumsSelected(id)" id="d11">
+                            <div>
+                              <img src="image/unnamed.jpg" alt=""/>
+                              <p>Album1</p>
+                              <h5>Danhy</h5>
+                              <p hidden>${id}</p>
+                              <p hidden>${uri}</p>
+                            </div>
+                          </li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="nowPlayingPage" class="ui-page">
+          <div id="id-now-playing-page-content">
+            <div class="ui-row-header-playing-page">
+              <img src="#" alt="" class="ui-row-img-header-playing"/>
+              <div class="ui-row-info-header-playing">
+                <h1 id="id-row-info-header-playing-album-name">Set Fire to the Rain</h1>
+                <p id="id-row-info-header-playing-album-artists">Adele - 21</p>
+                <p hidden="hidden" id="id-row-info-header-playing-album-uri"></p>
+              </div>
+            </div>
+            <div class="ui-row-body-playing-page">
+              <table id="ui-table-content-playing-list" class="table table-striped">
+                <tbody>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="likedPage" class="ui-page">
+          liked page
+        </div>
+
+        <div id="playlistsPage" class="ui-page">
+          <div class="ui-playlist-page-content">
+            <div class="ui-playlist-page-header">
+              <h1>Playlists</h1>
+            </div>
+            <div class="ui-playlist-page-body">
+              <ul class="auto-grid">
+                <li onclick="artistalbumsSelected(id)" id="d">
+                  <div>
+                    <img src="image/unnamed.jpg" alt=""/>
+                    <p>Album1</p>
+                    <h5>Danhy</h5>
+                    <p hidden="hidden">${id}</p>
+                    <p hidden="hidden">${uri}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="recentPlaysPage" class="ui-page">
+          <div class="ui-recent-play-page-header">
+            <h1>Recent plays</h1>
+          </div>
+          <div class="ui-recent-play-page-body">
+            <table id="id-recent-play-page-body-table" class="table table-striped abc">
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="settingsPage" class="ui-page">
+          settings page
+        </div>
+      </div>
+    </div>
+    <footer>
+      <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark ui-music-player-bar"
+        id="ui-music-player-navbar">
+        <img id="ui-bar-album-image" class="img-fluid" src="image/unnamed.jpg" alt=""/>
+        <div class="ui-bar-info-div">
+          <div id="ui-bar-title" class="ui-text-overflow-ellipsis" title="Sorry, Blame It On Me">
+            <p>Sorry, Blame It On Me</p>
+          </div>
+          <div id="ui-bar-artist" class="ui-text-overflow-ellipsis" title="[object Object]">Akon</div>
+        </div>
+
+        <div id="ui-music-player-icon">
+          <div class="ui-box-of-button" onclick="stepBackwardAction()">
+            <i class="fas fa-step-backward" style="color: white;" aria-hidden="true"></i>
+          </div>
+
+          <div class="ui-box-of-button">
+            <i id="playPausebutton" onclick="playPauseAction('playPausebutton')" class="fas fa-play"
+              style="color: white;" aria-hidden="true"></i>
+          </div>
+
+          <div class="ui-box-of-button" onclick="stepForwardAction()">
+            <i class="fa fa-step-forward" style="color: white;" aria-hidden="true"></i>
+          </div>
+
+          <div class="ui-box-of-button">
+            <p id="ui-track-position-time" class="time">0:00</p>
+          </div>
+
+          <input type="range" step="any" id="seekbar" value="0" min="0"/>
+
+          <div class="ui-box-of-button">
+            <p id="ui-track-duration-time" class="time">0:00</p>
+          </div>
+
+          <div class="ui-box-of-button">
+            <i class="fa fa-heart" style="color: white;" aria-hidden="true"></i>
+          </div>
+
+          <div class="ui-box-of-button">
+            <i class="fa fa-volume-up" id="muteOnmuteButton" onclick="muteOnmuteAction('muteOnmuteButton')"
+              style="color: white;" aria-hidden="true"></i>
+          </div>
+
+          <input type="range" step="any" id="volumebar" value="0.5" min="0" max="1"/>
+
+          <div class="ui-box-of-button" onclick="shuffleAction()">
+            <i id="id-bar-shuffleIcon" class="fa fa-random" style="color: white;" aria-hidden="true"></i>
+          </div>
+
+          <div class="ui-box-of-button" onclick="repeatAction()">
+            <i id="id-bar-repeatIcon" class="fa fa-redo" style="color: white;" aria-hidden="true"></i>
+          </div>
+
+          <div class="ui-box-of-button">
+            <i class="fas fa-ellipsis-h" style="color: white;" aria-hidden="true"></i>
+          </div>
+        </div>
+      </nav>
+    </footer>
+  </div>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title">Start listening with a free Spotify account</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="ui-dialog-body-signup">
+            <a href="https://www.spotify.com/vn-vi/signup/?forward_url=https%3A%2F%2Fopen.spotify.com%2Fplaylist%2F37i9dQZEVXbLdGSmz6xilI#login" role="button" class="btn btn-success">SIGN UP FREE</a>
+          </div>
+
+          <div class="ui-dialog-body-login">
+            <span>Already have an account?</span><a id="spotifyAuthorization" class="btn btn-default" href="#">LOG IN</a>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

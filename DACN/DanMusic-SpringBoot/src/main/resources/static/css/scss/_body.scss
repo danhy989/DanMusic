@@ -1,0 +1,606 @@
+$color-grey:rgba(0, 0, 0, 0.5);
+$ele-font-size:16px;
+
+body{
+    
+    padding: 0 1em 1em 1em;
+    margin-bottom: 7em;
+   
+    #sidebar{
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    color: #fff;
+    transition: all 0.3s;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 5em;
+    //background-color: black;
+        ul:not(:last-child){
+            margin-bottom: 1em;
+        }
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            
+            overflow: hidden;
+            //background-color: black;
+
+            li:first-child{
+                margin-top: 1em;
+            }
+
+            li:not(:last-child) {
+                margin-bottom: 1em;
+            }
+
+            
+            
+            li{
+                :hover{
+                    cursor: pointer;
+                }
+                .row-menu{
+                    
+                    padding-left: 1em;
+                    height: 3em;
+                    display: flex;
+                    align-items: center;
+                    i{
+                        font-size: 1em;
+                        color: $color-grey;
+                    }
+                    a{
+                        display: block;
+                        color: $color-grey;
+                        padding: 8px 16px;
+                        text-decoration: none;
+                        font-size: $ele-font-size;
+                    }
+                    
+                }
+                .row-menu.active {
+                    border-left: 5px solid black; 
+                    
+                    i{
+                        color: black;
+                    }
+                    a{
+                        color: black;
+                    }
+                    
+                }
+                :not(i):not(a):hover{
+                    background-color: $color-grey;
+                }
+                
+
+            }
+        }
+    }
+
+    .ui-page {
+        &.show {
+            display: block;
+            padding-top: 4em;
+
+            &#musicPage{
+                #id-music-page-content{
+                    .ui-content-page-header{
+                        h1{
+                            font-size: 55px;
+                        }
+                        margin-bottom: 2em;
+                        
+                    }
+        
+                    .ui-content-page-body{
+                        font-size: $ele-font-size;
+                            #ui-content-page-type{
+                                :hover{
+                                    cursor: pointer;
+                                }
+                                color: $color-grey;
+                                .active{
+                                    color: black;
+                                }
+                            }
+                            
+                        .ui-content-page-body-music{
+                            &.show{
+                                display: block;
+                            }
+                            display: none;
+    
+                            &#id-content-page-music-songs{
+                                #ui-content-page-action{
+                                    color: black;
+                                    div{
+                                        margin-right: 2em;
+                                    }
+                                   
+                                }
+                                #ui-table-content-songs-list{
+                                    color: $color-grey;
+                                    tbody {
+                                        i:hover{
+                                            cursor: pointer;
+                                        }
+                                        tr{
+                                            &.active {
+                                                color: blue;
+                                            }
+                                            color: black ;
+                                            .ui-bold{
+                                                font-weight: 600;
+                                            }
+                                            .num{
+                                                width: 1em;
+                                            }
+                                            .name{
+                                                width: 30em;
+                                            }
+                                        }
+                                    } 
+                                    
+            
+                                    
+                                    
+                                }
+                            }
+    
+                            &#id-content-page-music-albums{
+                                .auto-grid{
+                                    --auto-grid-min-size: 12rem;
+              
+                                    display: grid;
+                                    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+                                    grid-gap: 1rem;
+                                    list-style-type: none;
+                                    li {
+                                        padding: 1rem 1rem;
+                                        text-align: center;
+                                        font-size: 1.2rem;
+                                        //background: #eb4d4b;
+                                        color: black;
+                                        div{
+                                            margin: auto;
+                                            :hover{
+                                                opacity: 0.3;
+                                                cursor: pointer;
+                                            }
+                                            img{
+                                                margin-bottom: 1rem;
+                                                opacity: 1;
+                                                display: block;
+                                                width: 100%;
+                                                height: auto;
+                                                transition: .5s ease !important;
+                                                backface-visibility: hidden !important;
+                                                &.ui-music-artists-img{
+                                                    border-radius: 50%;
+                                                }
+                                            }
+        
+                                            h5{
+                                                margin-bottom: 0;
+                                            }
+                                            p{
+                                                padding: 0;
+                                                margin: 0;
+                                                color:$color-grey;
+                                                font-size: 1rem;
+                                            }
+                                        }
+                                      }
+                                }
+                            }
+    
+                            &#id-content-page-music-artists{
+                                margin: 2rem 1rem 1rem 2rem;
+                                .auto-grid{
+                                    --auto-grid-min-size: 12rem;
+              
+                                    display: grid;
+                                    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+                                    grid-gap: 1rem;
+                                    list-style-type: none;
+                                    li {
+                                        padding: 1rem 1rem;
+                                        text-align: center;
+                                        font-size: 1.2rem;
+                                        //background: #eb4d4b;
+                                        color: black;
+                                        div{
+                                            margin: auto;
+                                            :hover{
+                                                opacity: 0.3;
+                                                cursor: pointer;
+                                            }
+                                            img{
+                                                margin-bottom: 1rem;
+                                                opacity: 1;
+                                                display: block;
+                                                width: 100%;
+                                                height: auto;
+                                                transition: .5s ease !important;
+                                                backface-visibility: hidden !important;
+                                                border-radius: 50%;
+                                            }
+        
+                                            h5{
+                                                margin-bottom: 0;
+                                            }
+                                        }
+                                      }
+                                }
+                                .ui-music-artists-title{
+    
+                                }
+                                .ui-music-artists-title-sub{
+                                    color: $color-grey;
+                                }
+                                #id-followed-artists{
+                                    margin-bottom: 8rem;
+                                }
+                            }
+    
+                            
+                            
+                            
+                            
+                            
+                        }
+                }
+                
+    
+                }
+            }
+
+            &#nowPlayingPage{
+                #id-now-playing-page-content{
+                    padding: 1rem 1rem 1rem 1rem;
+                    .ui-row-header-playing-page{
+                        display: flex;
+                        
+                        .ui-row-img-header-playing{
+                           margin-right: 2rem;
+                           margin-bottom: 4rem;
+                          
+                        }
+                        .ui-row-info-header-playing{
+                            padding-top: 1rem;
+                            h1{
+                            
+                            }
+                            p{
+                                color: $color-grey;
+                                font-size: $ele-font-size;
+                            }
+                        }
+                    }
+                    .ui-row-body-playing-page{
+                        #ui-table-content-playing-list tbody{
+                            color: $color-grey;
+                             
+                            .ui_playings_page_tr{
+                                &.active{
+                                    color: blue;
+                                }
+                                .ui-bold{
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &#artirst-album-page{
+                #id-artirst-album-page-content{
+                    padding: 1rem 3rem 1rem 1rem;
+                    #ui-row-header-artirst-album-page{
+                        display: flex;
+                        .ui-row-img-header-artirst-album{
+                            margin-right: 2rem;
+                           margin-bottom: 4rem;
+                           border-radius: 50%;
+                        }
+                        .ui-row-info-header-artirst-album{
+                            padding-top: 1rem;
+                            h1{
+                            
+                            }
+                            p{
+                                color: $color-grey;
+                                font-size: $ele-font-size;
+                            }
+                        }
+                    }
+                    #ui-row-body-artirst-album-page{
+                        margin: 1rem 1rem 1rem 3rem;
+                        .ui-row-body-artirst-album-page-albums{
+                            .auto-grid{
+                                --auto-grid-min-size: 12rem;
+          
+                                display: grid;
+                                grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+                                grid-gap: 1rem;
+                                list-style-type: none;
+                                li {
+                                    padding: 1rem 1rem;
+                                    text-align: center;
+                                    font-size: 1.2rem;
+                                    //background: #eb4d4b;
+                                    color: black;
+                                    div{
+                                        margin: auto;
+                                        :hover{
+                                            opacity: 0.3;
+                                            cursor: pointer;
+                                        }
+                                        img{
+                                            margin-bottom: 1rem;
+                                            opacity: 1;
+                                            display: block;
+                                            width: 100%;
+                                            height: auto;
+                                            transition: .5s ease !important;
+                                            backface-visibility: hidden !important;
+                                            
+                                        }
+    
+                                        h5{
+                                            margin-bottom: 0;
+                                        }
+                                    }
+                                  }
+                            }
+                            margin-bottom: 3rem;
+                        }
+                        .ui-row-body-artirst-album-page-artirst-related{
+                            .auto-grid{
+                                --auto-grid-min-size: 12rem;
+          
+                                display: grid;
+                                grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+                                grid-gap: 1rem;
+                                list-style-type: none;
+                                li {
+                                    padding: 1rem 1rem;
+                                    text-align: center;
+                                    font-size: 1.2rem;
+                                    //background: #eb4d4b;
+                                    color: black;
+                                    div{
+                                        margin: auto;
+                                        :hover{
+                                            opacity: 0.3;
+                                            cursor: pointer;
+                                        }
+                                        img{
+                                            margin-bottom: 1rem;
+                                            opacity: 1;
+                                            display: block;
+                                            width: 100%;
+                                            height: auto;
+                                            transition: .5s ease !important;
+                                            backface-visibility: hidden !important;
+                                            border-radius: 50%;
+                                        }
+    
+                                        h5{
+                                            margin-bottom: 0;
+                                        }
+                                    }
+                                  }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &#search-result-page{
+                #id-search-result-page-content{
+                    padding: 1rem 3rem 1rem 1rem;
+                    #id-search-result-header{
+                        margin-bottom: 4rem;
+                    }
+                    #id-search-result-body{
+                        margin-left: 1rem;
+                        #id-search-result-body-songs{
+                            margin-bottom: 3rem;
+                            #id-search-result-body-songs-table tbody{
+                                color: $color-grey;
+                                    .ui_result_page_tr{
+                                        &.active{
+                                            color: blue;
+                                        }
+                                        .ui-bold{
+                                            font-weight: 500;
+                                        }
+                                    }
+                        }
+                        }
+
+                        #id-search-result-body-album{
+                            .auto-grid{
+                                --auto-grid-min-size: 12rem;
+          
+                                display: grid;
+                                grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+                                grid-gap: 1rem;
+                                list-style-type: none;
+                                li {
+                                    padding: 1rem 1rem;
+                                    text-align: center;
+                                    font-size: 1.2rem;
+                                    //background: #eb4d4b;
+                                    color: black;
+                                    div{
+                                        margin: auto;
+                                        :hover{
+                                            opacity: 0.3;
+                                            cursor: pointer;
+                                        }
+                                        img{
+                                            margin-bottom: 1rem;
+                                            opacity: 1;
+                                            display: block;
+                                            width: 100%;
+                                            height: auto;
+                                            transition: .5s ease !important;
+                                            backface-visibility: hidden !important;
+                                            
+                                        }
+    
+                                        h5{
+                                            margin-bottom: 0;
+                                        }
+                                    }
+                                  }
+                            }
+                            margin-bottom: 3rem;
+                        }
+
+                        #id-search-result-body-artirs{
+                            .auto-grid{
+                                --auto-grid-min-size: 12rem;
+          
+                                display: grid;
+                                grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+                                grid-gap: 1rem;
+                                list-style-type: none;
+                                li {
+                                    padding: 1rem 1rem;
+                                    text-align: center;
+                                    font-size: 1.2rem;
+                                    //background: #eb4d4b;
+                                    color: black;
+                                    div{
+                                        margin: auto;
+                                        :hover{
+                                            opacity: 0.3;
+                                            cursor: pointer;
+                                        }
+                                        img{
+                                            margin-bottom: 1rem;
+                                            opacity: 1;
+                                            display: block;
+                                            width: 100%;
+                                            height: auto;
+                                            transition: .5s ease !important;
+                                            backface-visibility: hidden !important;
+                                            border-radius: 50%;
+                                        }
+    
+                                        h5{
+                                            margin-bottom: 0;
+                                        }
+                                    }
+                                  }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &#recentPlaysPage{
+                
+                .ui-recent-play-page-header{
+                    margin-bottom: 3rem;
+                }
+                .ui-recent-play-page-body{
+                    #id-recent-play-page-body-table tbody{
+                   
+                            color: $color-grey;
+                                .ui_recent_page_tr{
+                                    &.active{
+                                        color: blue;
+                                    }
+                                    .ui-bold{
+                                        font-weight: 500;
+                                    }
+                                }
+                    }
+                }
+            }
+
+            &#playlistsPage{
+                .ui-playlist-page-content{
+                    padding: 1rem 3rem 1rem 1rem;
+                    .ui-playlist-page-header{
+                        margin-bottom: 3rem;
+                    }
+                    .ui-playlist-page-body{
+                        .auto-grid{
+                            --auto-grid-min-size: 12rem;
+      
+                            display: grid;
+                            grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+                            grid-gap: 1rem;
+                            list-style-type: none;
+                            li {
+                                padding: 1rem 1rem;
+                                text-align: center;
+                                font-size: 1.2rem;
+                                //background: #eb4d4b;
+                                color: black;
+                                div{
+                                    margin: auto;
+                                    :hover{
+                                        opacity: 0.3;
+                                        cursor: pointer;
+                                    }
+                                    img{
+                                        margin-bottom: 1rem;
+                                        opacity: 1;
+                                        display: block;
+                                        width: 100%;
+                                        height: auto;
+                                        transition: .5s ease !important;
+                                        backface-visibility: hidden !important;
+                                        
+                                    }
+
+                                    h5{
+                                        margin-bottom: 0;
+                                    }
+                                }
+                              }
+                        }
+                    }
+                }
+                
+            }
+        }
+        display: none;
+    }
+
+    #myModal{
+        
+        .modal-body{
+            .ui-dialog-body-signup{
+                display: flex;
+                justify-content: center;
+                .btn{
+                    width: 50%;
+                }
+                margin-bottom: 1rem;
+            }
+            .ui-dialog-body-login{
+                display: flex;
+                justify-content: center;
+            }
+            
+        }
+    }
+}
+
+
+
