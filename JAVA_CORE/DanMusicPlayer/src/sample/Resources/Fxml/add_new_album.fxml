@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="647.0" prefWidth="678.0" type="VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Thêm Album mới">
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="30.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Thể loại" />
+                  <ComboBox fx:id="id_genre_album_combo_box" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="202.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label />
+                  <Button fx:id="id_add_genre_action" mnemonicParsing="false" text="Tạo mới thể loại" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="30.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Nghệ sĩ" />
+                  <ComboBox fx:id="id_artist_album_combo_box" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label />
+                  <Button fx:id="id_add_single_action" mnemonicParsing="false" text="Tạo mới nghệ sĩ" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="731.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="15.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Tên Album" />
+                  <ComboBox fx:id="id_name_album_combo_box" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label />
+                  <Button fx:id="id_add_album_action" mnemonicParsing="false" text="Tạo mới Album" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="831.0" prefHeight="100.0" prefWidth="200.0" spacing="150.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Button fx:id="id_choose_file_add_new_album_action" mnemonicParsing="false" text="Choose files" />
+            <Button fx:id="id_files_reset_action" mnemonicParsing="false" text="Reset " />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="931.0" prefHeight="391.0" prefWidth="638.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Danh sách bài hát vừa thêm: " />
+                  <ListView fx:id="id_tracks_listView" prefHeight="127.0" prefWidth="638.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="1031.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Button fx:id="id_add_tracks_action" mnemonicParsing="false" text="Thêm" />
+            <Button mnemonicParsing="false" text="Thoát" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+   </padding>
+</fx:root>

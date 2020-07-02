@@ -10,4 +10,12 @@ public class StringUtils {
         path=path.replaceAll("\\\\", "/");
         return path;
     }
+
+    public static String getInnerProjectResourceString(String path){
+        if(path.contains("/")){
+            path = path.replaceAll("/","\\\\");
+        }
+        path = path.replace(RESOURCE_PATH,"");
+        return path;
+    }
 }

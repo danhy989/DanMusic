@@ -12,6 +12,12 @@ public class TrackEntity {
         this.pathSoundFile = pathSoundFile;
     }
 
+    public TrackEntity(String name, String pathImage, String pathSoundFile) {
+        this.name = name;
+        this.pathImage = pathImage;
+        this.pathSoundFile = pathSoundFile;
+    }
+
     public TrackEntity() {
     }
 

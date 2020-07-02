@@ -62,7 +62,7 @@ public class AlbumTrackDaoImpl extends Dao<AlbumTrackEntity> {
         try {
             connection = PostgresSQLConnUtils.getConnection();
             statement = connection.createStatement();
-            String sql = String.format ("Insert into ablum_track(id_album, id_track, createtime) VALUES ('%d','%d','%s')",
+            String sql = String.format ("Insert into album_track(id_album, id_track, createtime) VALUES (%d,%d,'%s')",
                     albumTrackEntity.getId_album(),albumTrackEntity.getId_track(),albumTrackEntity.getCreateTime());
             rowCount = statement.executeUpdate(sql);
         } catch (SQLException | ClassNotFoundException e) {

@@ -1,14 +1,16 @@
 package sample.Java.Controller;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Slider;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -24,11 +26,15 @@ import sample.Java.Service.MusicPlayerService;
 import sample.Java.Service.PlaylistService;
 import sample.Java.Service.SingleService;
 import sample.Java.Static.DataStaticLoader;
+import sample.Java.Util.AlertUtils;
 import sample.Java.Util.EffectUtils;
+import sample.Java.Util.TimeUtils;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.*;
 
 public class MainController implements Initializable {
@@ -38,11 +44,22 @@ public class MainController implements Initializable {
     private static final Paint BUTTON_ACTIVE_COLOR = Color.RED;
     private static final Paint BUTTON_INACTIVE_COLOR = Color.WHITE;
 
+    private static boolean isAutoShutDown = false;
+
+    private static Timer timer;
+
     private static Stage mainStage;
 
+    public static Stage getMainStage() {
+        return mainStage;
+    }
 
     public static void setMainStage(Stage mainStage) {
         MainController.mainStage = mainStage;
+    }
+
+    public static void setMainScene(Scene scene){
+        mainStage.setScene(scene);
     }
 
     @FXML
@@ -56,7 +73,7 @@ public class MainController implements Initializable {
 
     @FXML
     private Label totalDurationTime,currentDurationTime,nameTrackPlaying,singleTrackPlaying,homeButton,
-            libMadeForYouButton,libArtistsButton;
+            libMadeForYouButton,libArtistsButton,idAddNewAnAlbumButton;
 
     @FXML
     private ImageView imageTrackPlaying;
@@ -64,6 +81,14 @@ public class MainController implements Initializable {
     @FXML
     public BorderPane mainPane;
 
+    @FXML
+    private TextField id_shutdown_time_h,id_shutdown_time_m,id_shutdown_time_s;
+
+    @FXML
+    private Button id_setTimeForShutDown,id_shutdown_cancel_button;
+
+    @FXML
+            private Label id_time_shutdown_coundown;
 
 
     String pathMusic = ("D:/Source/me/Java-UIT/Music-player/JAVA_CORE/DanMusicPlayer/src/sample/Resources/Music/1.2-Ex 1.mp3");
@@ -98,6 +123,12 @@ public class MainController implements Initializable {
             ArtistPane artistPane = new ArtistPane();
             mainPane.setCenter(artistPane);
         }
+    }
+
+    public void AddNewAnAlbumAction(MouseEvent mouseEvent) throws SQLException {
+        AddNewAlbumPane addNewAlbumPane = new AddNewAlbumPane();
+        mainPane.setCenter(addNewAlbumPane);
+
     }
 
     public void playAction(MouseEvent mouseEvent) {
@@ -202,12 +233,15 @@ public class MainController implements Initializable {
         EffectUtils.setCusorEffect(homeButton);
         EffectUtils.setCusorEffect(libMadeForYouButton);
         EffectUtils.setCusorEffect(libArtistsButton);
+        EffectUtils.setCusorEffect(idAddNewAnAlbumButton);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HomePane homePane = new HomePane();
         mainPane.setCenter(homePane);
+
+
 
         this.setEffectForMainPage();
         /*
@@ -225,7 +259,80 @@ public class MainController implements Initializable {
         List<Single> singles = SingleService.getInstance().convertAlbumHotTrackFromSingleDao();
         SingleService.getInstance().setContentSingle(singles);
 
+        id_shutdown_cancel_button.setOnMouseClicked(event -> {
+            if(isAutoShutDown){
+                boolean rs = AlertUtils.getInstance().ShowAlertConfirm("Auto shutdown","","Are you sure cancel the auto shutdown?");
+                if(rs){
+                    isAutoShutDown = false;
+                    timer.cancel();
+                    id_shutdown_time_h.clear();
+                    id_shutdown_time_m.clear();
+                    id_shutdown_time_s.clear();
+                    id_time_shutdown_coundown.setText("00:00:00");
+                }
+            }
+        });
 
+        id_setTimeForShutDown.setOnMouseClicked(event -> {
+            if(!isAutoShutDown){
+                boolean rs = AlertUtils.getInstance().ShowAlertConfirm("Auto shutdown","","Are you sure turn on the auto shutdown? You can cancel it then!");
+                if(rs){
+                    if(!id_shutdown_time_h.getText().trim().equals("") || !id_shutdown_time_m.getText().trim().equals("") || !id_shutdown_time_s.getText().trim().equals("")){
+                        try{
+                            final double[] second = {0};
+
+                            if(!id_shutdown_time_h.getText().trim().equals("")){
+                                int h = Integer.parseInt(id_shutdown_time_h.getText());
+                                second[0] = second[0] + h*3600;
+                            }
+                            if(!id_shutdown_time_m.getText().trim().equals("")){
+                                int m = Integer.parseInt(id_shutdown_time_m.getText());
+                                second[0] = second[0] + m*60;
+                            }
+                            if(!id_shutdown_time_s.getText().trim().equals("")){
+                                int s = Integer.parseInt(id_shutdown_time_s.getText());
+                                second[0] = second[0] + s;
+                            }
+
+                            timer = new Timer();
+
+                            timer.scheduleAtFixedRate(new TimerTask() {
+                                public void run() {
+                                    if(second[0] > 0)
+                                    {
+                                        isAutoShutDown = true;
+                                        int numberOfHours = (int) (second[0] % 86400 ) / 3600 ;
+                                        int numberOfMinutes = (int)((second[0] % 86400 ) % 3600 ) / 60;
+                                        int numberOfSeconds = (int) ((second[0] % 86400 ) % 3600 ) % 60 ;
+
+                                        String rs = String.format("%02d",numberOfHours )+":"+String.format("%02d",numberOfMinutes )+":"+String.format("%02d",numberOfSeconds );
+                                        Platform.runLater(() ->  id_time_shutdown_coundown.setText(rs));
+                                        second[0]--;
+                                    }
+                                    else{
+                                        isAutoShutDown = false;
+                                        timer.cancel();
+//                                        String shutdownCmd = "shutdown -s";
+//                                        try {
+//                                            Process child = Runtime.getRuntime().exec(shutdownCmd);
+//                                        } catch (IOException e) {
+//                                            e.printStackTrace();
+//                                        }
+                                        System.exit(1);
+                                    }
+                                }
+                            }, 1000,1000);
+
+
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+            }
+
+        });
     }
 
 

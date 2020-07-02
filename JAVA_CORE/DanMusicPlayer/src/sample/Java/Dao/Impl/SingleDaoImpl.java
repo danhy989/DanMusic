@@ -94,7 +94,7 @@ public class SingleDaoImpl extends Dao<SingleEntity> {
         try {
             connection = PostgresSQLConnUtils.getConnection();
             statement = connection.createStatement();
-            String sql = String.format ("UPDATE single SET name = '%s', info =  '%s',pathimage = '%s' , id_genre = '%d' where id=%d",
+            String sql = String.format ("UPDATE single SET name = '%s', info =  '%s',pathimage = '%s' , id_genre = %d where id=%d",
                     tNew.getName(),tNew.getInfo(),tNew.getPathImage(),tNew.getId_genre(),tOld.getId());
             rowCount = statement.executeUpdate(sql);
         } catch (SQLException | ClassNotFoundException e) {
@@ -171,4 +171,53 @@ public class SingleDaoImpl extends Dao<SingleEntity> {
         }
         return singleEntities;
     }
+
+    public List<SingleEntity> getListByGenreName(String genre) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        List<SingleEntity> singleEntities = new ArrayList<>();
+        try {
+            connection = PostgresSQLConnUtils.getConnection();
+            statement = connection.createStatement();
+            String sql = "Select * from Single s inner join genre g on s.id_genre = g.id where g.name = "+"'"+genre+"'";
+            singleEntities = this.setEntites(statement,sql);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+        }
+        return singleEntities;
+    }
+
+    public Optional<SingleEntity> getByName(String name) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        SingleEntity singleEntity = new SingleEntity();
+        try {
+            connection = PostgresSQLConnUtils.getConnection();
+            statement = connection.createStatement();
+            String sql = String.format ("Select * from Single where name = '%s'",name);
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()){
+                singleEntity.setId(rs.getLong(1));
+                singleEntity.setName(rs.getString(2));
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+        }
+        return Optional.of(singleEntity);
+    }
+
 }

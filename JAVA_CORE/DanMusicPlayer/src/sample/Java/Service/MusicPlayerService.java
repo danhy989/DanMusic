@@ -73,13 +73,14 @@ public class MusicPlayerService  {
             mediaPlayer.stop();
         }
 
-        chooseColorTrackPane();
+
 
         String URI = f.toURI().toString();
         if(null!=listObservableFile && listObservableFile.size()>1){
             numPlayingTrackOnList = IntStream.range(0,listObservableFile.size())
                     .filter(value -> listObservableFile.get(value).toURI().toString().equals(URI)).findFirst().getAsInt();
         }
+        chooseColorTrackPane();
             Media media = new Media(URI);
             try
             {

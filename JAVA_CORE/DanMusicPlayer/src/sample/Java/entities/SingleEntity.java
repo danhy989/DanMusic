@@ -15,6 +15,10 @@ public class SingleEntity {
         this.id_genre = id_genre;
     }
 
+    public SingleEntity(Long id) {
+        this.id = id;
+    }
+
     public SingleEntity() {
 
     }

@@ -2,33 +2,64 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73d88ed9-a1f6-4afd-9c3a-5aeb88c0f941" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/config/WebSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/controller/TokenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/cronjob/TokenTasks.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/enums/GrantTypeEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/enums/ResponseTypeEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/enums/ScopeEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/RestTemplateService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/impl/RestTemplateServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/statics/TokenStatic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/utils/StringUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/utils/TimeUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/resources/templates/test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DACN/DanMusi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DACN/DanMusi/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/DanMusiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/DanMusiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/controller/SpotifyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/controller/SpotifyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/SpotifyClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/SpotifyClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/SpotifyClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/service/impl/SpotifyClientServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/utils/JSONUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/java/com/danhy989/DanMusi/utils/JSONUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DACN/DanMusi/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../DACN/DanMusi/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DACN/Spotify Client/WebPlaybackSDK-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/../DACN/Spotify Client/WebPlaybackSDK-1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Controller/AddNewAlbumPane.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Controller/GenreManagementController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Controller/SingleManagementController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Util/AlertUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DanMusicPlayer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Dao/Impl/AlbumDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Dao/Impl/AlbumDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Dao/Impl/AlbumTrackDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Dao/Impl/AlbumTrackDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Dao/Impl/GenreDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Dao/Impl/GenreDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Dao/Impl/SingleDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Dao/Impl/SingleDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Dao/Impl/TrackDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Dao/Impl/TrackDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Service/AlbumService.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Service/AlbumService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Service/MusicPlayerService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Service/MusicPlayerService$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Service/MusicPlayerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Service/MusicPlayerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Service/SingleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Service/SingleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Util/StringUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/Util/StringUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/entities/SingleEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/entities/SingleEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/entities/TrackEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Java/entities/TrackEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Resources/Fxml/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/out/production/DanMusicPlayer/sample/Resources/Fxml/Main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Dao/Impl/AlbumDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Dao/Impl/AlbumDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Dao/Impl/AlbumTrackDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Dao/Impl/AlbumTrackDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Dao/Impl/GenreDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Dao/Impl/GenreDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Dao/Impl/SingleDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Dao/Impl/SingleDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Dao/Impl/TrackDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Dao/Impl/TrackDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Service/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Service/AlbumService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Service/MusicPlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Service/MusicPlayerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Service/SingleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Service/SingleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Util/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/Util/StringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/entities/SingleEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/entities/SingleEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/entities/TrackEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Java/entities/TrackEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Resources/Fxml/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/DanMusicPlayer/src/sample/Resources/Fxml/Main.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DanMusicPlayer/src/sample/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -87,6 +118,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/DanMusicPlayer" />
@@ -117,27 +149,24 @@
       <option name="presentableId" value="Default" />
       <updated>1589552658040</updated>
       <workItem from="1589552659365" duration="21000" />
+      <workItem from="1592643228524" duration="258000" />
+      <workItem from="1593596721631" duration="7000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21000" />
+    <option name="totallyTimeSpent" value="286000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -145,20 +174,34 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Codota" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Codota" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Database" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/DanMusicPlayer/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>

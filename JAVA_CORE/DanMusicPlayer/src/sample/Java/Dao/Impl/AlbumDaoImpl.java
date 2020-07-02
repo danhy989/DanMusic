@@ -71,7 +71,7 @@ public class AlbumDaoImpl extends Dao<AlbumEntity> {
             connection = PostgresSQLConnUtils.getConnection();
             statement = connection.createStatement();
             String sql = String.format ("Insert into Album(name, releasetime,pathimage,album_hot_track,id_single) " +
-                            "VALUES ('%d','%s','%s','%b','%d')",
+                            "VALUES ('%s','%s','%s',%b,%d)",
                     albumEntity.getName(), albumEntity.getReleaseTime(),albumEntity.getPathImage()
                     ,albumEntity.isAlbum_hot_track(),albumEntity.getId_single());
             rowCount = statement.executeUpdate(sql);
@@ -172,7 +172,10 @@ public class AlbumDaoImpl extends Dao<AlbumEntity> {
             statement = connection.createStatement();
             String sql = String.format ("Select a.id,a.name,a.releasetime,a.pathimage,a.album_hot_track,a.id_single  " +
                     "from album a inner join single s on a.id_single = s.id where s.id = '%d' and a.album_hot_track = true",id);
-            albumEntity = setAlbumEntites(statement, sql).get(0);
+            List<AlbumEntity> albumEntities = setAlbumEntites(statement, sql);
+            if(!albumEntities.isEmpty()){
+                albumEntity = albumEntities.get(0);
+            }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -225,4 +228,51 @@ public class AlbumDaoImpl extends Dao<AlbumEntity> {
         }
         return albumEntities;
     }
+
+    public List<AlbumEntity> getListBySingleName(String single) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        List<AlbumEntity> albumEntities = new ArrayList<>();
+        try {
+            connection = PostgresSQLConnUtils.getConnection();
+            statement = connection.createStatement();
+            String sql = "Select * from Album inner join single s on album.id_single = s.id where s.name = "+"'"+single+"'";
+            albumEntities = this.setAlbumEntites(statement,sql);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+        }
+        return albumEntities;
+    }
+
+    public AlbumEntity getByName(String name) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        AlbumEntity albumEntity = new AlbumEntity();
+
+        try {
+            connection = PostgresSQLConnUtils.getConnection();
+            statement = connection.createStatement();
+            String sql = String.format ("Select * from Album where name = '%s'",name);
+            albumEntity = this.setAlbumEntites(statement,sql).get(0);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+        }
+        return albumEntity;
+    }
+
+
 }

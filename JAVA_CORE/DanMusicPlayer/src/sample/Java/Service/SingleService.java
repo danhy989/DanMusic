@@ -124,32 +124,39 @@ public class SingleService {
             }
             genreEntity.ifPresent(entity -> single.setGenre(entity.getName()));
 
-            Album album = new Album();
-                    album.setName(albumEntity.getName());
-                    album.setReleaseTime(albumEntity.getReleaseTime());
-                    album.setPathImage(albumEntity.getPathImage());
-                    album.setSingle(single.getName());
-                    List<Track> tracks = new ArrayList<>();
-                    List<TrackEntity> trackEntities = null;
-                    try {
-                        trackEntities = DataStaticLoader.getTrackEntityDao().getAlbumTracksByAlbumID(albumEntity.getId());
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    if (!trackEntities.isEmpty()) {
-                        trackEntities.forEach(track -> {
-                            File file = new File(track.getPathSoundFile());
-                            tracks.add(
-                                    new Track(track.getName(),
-                                            TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file)),
-                                            file, track.getPathImage(), album.getSingle()));
-                        });
-                    }
-                    album.setTracks(tracks);
-                    single.setAlbumTrackHot(album);
-                    singles.add(single);
+            if(albumEntity!=null){
+                Album album = new Album();
+                album.setName(albumEntity.getName());
+                album.setReleaseTime(albumEntity.getReleaseTime());
+                album.setPathImage(albumEntity.getPathImage());
+                album.setSingle(single.getName());
+                List<Track> tracks = new ArrayList<>();
+                List<TrackEntity> trackEntities = null;
+                try {
+                    trackEntities = DataStaticLoader.getTrackEntityDao().getAlbumTracksByAlbumID(albumEntity.getId());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                if (!trackEntities.isEmpty()) {
+                    trackEntities.forEach(track -> {
+                        File file = new File(track.getPathSoundFile());
+                        tracks.add(
+                                new Track(track.getName(),
+                                        TimeUtils.convertTimeToString(Mp3Utils.getDurationWithMp3Spi(file)),
+                                        file, track.getPathImage(), album.getSingle()));
+                    });
+                }
+                album.setTracks(tracks);
+                single.setAlbumTrackHot(album);
+                singles.add(single);
+            }
+
                 });
         return singles;
+    }
+
+    public void addSingle(){
+
     }
 
 }

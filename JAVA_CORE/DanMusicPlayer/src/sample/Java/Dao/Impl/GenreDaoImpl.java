@@ -1,5 +1,6 @@
 package sample.Java.Dao.Impl;
 
+import javafx.scene.Scene;
 import sample.Java.Dao.Dao;
 import sample.Java.Util.PostgresSQLConnUtils;
 import sample.Java.entities.GenreEntity;
@@ -77,9 +78,15 @@ public class GenreDaoImpl extends Dao<GenreEntity> {
         try {
             connection = PostgresSQLConnUtils.getConnection();
             statement = connection.createStatement();
-            String sql = String.format ("Insert into genre(name) VALUES ('%s')",
-                    genreEntity.getName());
-            rowCount = statement.executeUpdate(sql);
+            String checkExistSQL = String.format("Select * from genre where name = '%s'",genreEntity.getName());
+            ResultSet resultSet = statement.executeQuery(checkExistSQL);
+            if(resultSet.next()){
+                return false;
+            }else{
+                String sql = String.format ("Insert into genre(name) VALUES ('%s')",
+                        genreEntity.getName());
+                rowCount = statement.executeUpdate(sql);
+            }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -141,5 +148,31 @@ public class GenreDaoImpl extends Dao<GenreEntity> {
         }
         if(rowCount>0)return true;
         return false;
+    }
+
+    public Optional<GenreEntity> getByName(String name) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        GenreEntity genreEntity = new GenreEntity();
+        try {
+            connection = PostgresSQLConnUtils.getConnection();
+            statement = connection.createStatement();
+            String sql = String.format ("Select * from Genre where name = '%s'",name);
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()){
+                genreEntity.setId(rs.getLong(1));
+                genreEntity.setName(rs.getString(2));
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+        }
+        return Optional.of(genreEntity);
     }
 }

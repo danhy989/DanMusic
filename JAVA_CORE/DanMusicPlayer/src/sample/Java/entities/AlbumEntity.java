@@ -21,6 +21,11 @@ public class AlbumEntity {
 
     }
 
+    public AlbumEntity(long id) {
+        this.id = id;
+    }
+
+
     public Long getId_single() {
         return id_single;
     }

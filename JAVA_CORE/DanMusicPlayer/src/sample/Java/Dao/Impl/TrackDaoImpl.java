@@ -192,4 +192,26 @@ public class TrackDaoImpl extends Dao<TrackEntity> {
         }
         return trackEntities;
     }
+
+    public TrackEntity getByName(String name) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        TrackEntity trackEntity = new TrackEntity();
+        try {
+            connection = PostgresSQLConnUtils.getConnection();
+            statement = connection.createStatement();
+            String sql = String.format ("Select * from Track where name = '%s'",name);
+            trackEntity = setTrackEntities(statement,sql).get(0);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+        }
+        return trackEntity;
+    }
 }
